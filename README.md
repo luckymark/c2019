@@ -41,7 +41,7 @@
 
 ## [作业](https://github.com/luckymark/c2019/tree/master/practices)
 
-1. level0 可选，用于还不够熟练的同学练手（嫌题目太少的同学，那就刷刷咱[神技大学的 OJ](http://acm.uestc.edu.cn/#/)吧，从低到高地刷哈）
+1. level0 可选，用于还不够熟练的同学练手（嫌题目太少的同学，那就刷刷咱[神技大学的 OJ](http://acm.uestc.edu.cn/#/)(已经炸了，请转至洛谷或HDU)吧，从低到高地刷哈）
 2. level1 必做，课堂＋课后练习
 3. level2 可选，供精力旺盛到变态的大神们发泄之用
 
