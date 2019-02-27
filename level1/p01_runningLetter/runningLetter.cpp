@@ -7,7 +7,6 @@
 #define W 80       //设置运行宽度 
 #define SLEEP_TIME 50     //设置休眠时间 
 
-bool flag = 0;
 char s[] = "test";
 
 int main(){
