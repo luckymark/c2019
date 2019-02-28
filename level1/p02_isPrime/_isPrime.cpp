@@ -28,4 +28,8 @@ void NotPrime()
 {
 	printf("This is not a Prime!!!");
 	system("pause");
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2b6d759c8e10cfe17d315e90703734d5f6ddb2ff
