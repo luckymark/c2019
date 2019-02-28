@@ -1,8 +1,6 @@
-#include <iostream>
+#include <stdio.h>
 #include <time.h>
-
-using namespace std;
-const int MAXN = 1000;
+#define MAXN 1000
 
 int notprime[MAXN + 5], primes[MAXN + 5], len;
 
@@ -18,7 +16,7 @@ void GetPrime()
 		for (int j = 0; j < len; j++)
 		{
 			if (i*primes[j] > MAXN) break;
-			notprime[i*primes[j]] = true;
+			notprime[i*primes[j]] = 1;
 			if (i%primes[j] == 0) break;
 		}
 	}

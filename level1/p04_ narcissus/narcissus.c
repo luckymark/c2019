@@ -1,7 +1,5 @@
-#include <iostream>
-#include <cmath>
-
-using namespace std;
+#include <stdio.h>
+#include <math.h>
 
 int main()
 {

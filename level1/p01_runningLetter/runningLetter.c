@@ -1,10 +1,12 @@
-#include <iostream>
+#include <stdio.h>
 #include <windows.h>
-#include <string>
+#include <string.h>
 
-using namespace std;
+#define MAXN 100
+#define EDGE 120
+#define SPEED 10
 
-void PrintStr(string s, int x, int y)
+void PrintStr(char s[], int x, int y)
 {
 	HANDLE hd;
 	COORD pos;
@@ -12,14 +14,13 @@ void PrintStr(string s, int x, int y)
 	pos.Y = y;
 	hd = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleCursorPosition(hd, pos);
-	cout << s;
+	printf("%s",s);
 }
 
 int main()
 {
-	string a = "a";
-	const int EDGE = 120, SPEED = 10;
-	int x = 1, y = 0, dir = 1, len = a.size();
+	char a[MAXN]="a";
+	int x = 1, y = 0, dir = 1, len = strlen(a);
 	PrintStr(a, 0, 0); Sleep(50);
 	while (1)
 	{
