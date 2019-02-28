@@ -11,7 +11,7 @@ int main()
 	{
 		NotPrime();
 	}
-	for (int n = 2; n*n < i; n++)
+	for (int n = 2; n*n <= i; n++)
 	{
 		if (i%n == 0)
 		{
