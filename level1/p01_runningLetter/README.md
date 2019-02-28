@@ -28,4 +28,7 @@ int main()
 	return 0;
 }
 
-
+git status
+git add .
+git commit -m "完成了running letter"
+git push
