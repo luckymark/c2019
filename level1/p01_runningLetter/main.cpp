@@ -1,6 +1,7 @@
 #include<iostream>
 #include<Windows.h>
 #define LENGTH 60 
+#define TM 60 
 using namespace std;
 int main()
 {
@@ -11,7 +12,7 @@ int main()
 		{
 			for(int j=1;j<i;j++)cout<<" ";
 			cout<<"a";
-			Sleep(60);
+			Sleep(TM);
 			system("cls");
 			if(i==0||i==LENGTH)k*=-1;
 		}
