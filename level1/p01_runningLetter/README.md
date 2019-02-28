@@ -17,7 +17,7 @@ int main(){
 		system("cls");
 		  for(int p=1;p<=77;p++){
 		  	if(p==step){
-		  		printf("c",word);
+		  		printf("%c",word);
 			  }
 			  else{
 			  	printf(" ");
@@ -38,4 +38,4 @@ int main(){
 
 	}
 	return 0;
-} 
+}
