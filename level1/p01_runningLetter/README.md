@@ -8,7 +8,7 @@
 
 #include<iostream>
 #include<Windows.h>
-#define LENGTH 60 
+#define LENGTH 61
 #define TM 60
 using namespace std;
 int main()
