@@ -22,8 +22,10 @@ int main()    //本代码使用筛法,最大上限为一百万(一个亿太大了。。。算了20几秒数组
 
 bool ISprime(int x)
 {
-	if (x % 2 == 0)
-		return 0;
+	if (x % 6 != 1 || x % 6 != 5)     //质数只能是6n+1或者是6n-1的形式
+		return false;
+	if (x % 2 == 0)      
+		return false;
 	for (int i = 2; i <=int(sqrt(x)); i++)  
 	{
 		if (x%i == 0)
