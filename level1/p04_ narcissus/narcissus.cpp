@@ -1,4 +1,5 @@
 #include <cstdio>
+using namespace std;
 int main() {
   int f = 0;
   for (int i = 1; i <= 9; ++i)
