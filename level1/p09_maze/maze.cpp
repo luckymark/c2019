@@ -148,13 +148,13 @@ void print_information(string* ss,int num){               //传入字符串数组及个数
 			for(int k = 0;k<num;k++){
 				int tmp = start_w + maxx+1;
 				for(int l = 1;l<=W;l++){
-					if(l==start_w - 2||l==tmp + 2) cout<<"#";
-					else if(l==start_w+1) cout<<ss[k],l+=ss[k].length() - 1;
+					if(l==start_w - 2||l==tmp + 2) cout<<"\033[1m\033[31m"<<"#";
+					else if(l==start_w+1) cout<<"\033[1m\033[31m"<<ss[k],l+=ss[k].length() - 1;
 					else cout<<" ";
 				}
 				cout<<endl;
 				for(int l = 1;l<=W;l++){
-					if(l==start_w - 2||l==tmp + 2) cout<<"#";
+					if(l==start_w - 2||l==tmp + 2) cout<<"\033[1m\033[31m"<<"#";
 					else cout<<" ";
 				}
 				cout<<endl;
@@ -163,7 +163,7 @@ void print_information(string* ss,int num){               //传入字符串数组及个数
 		}
 		else if(i == start_h + 2*num + 1 || i == start_h-1){
 			for(int j = 1;j<=W;j++){
-				if(j>=start_w - 2&&j<=start_w + maxx + 3) cout<<"#";
+				if(j>=start_w - 2&&j<=start_w + maxx + 3) cout<<"\033[1m\033[31m"<<"#";
 				else cout<<" ";
 			}
 			cout<<endl;
@@ -176,8 +176,8 @@ void print_information(string* ss,int num){               //传入字符串数组及个数
 void print_map(int posx,int posy,int w,int h){
     for(int i = 0;i<=h;i++){
 		for(int j = 0;j<=w;j++){
-			if(i == posx&&j == posy) cout<<"@";
-			else if(res_map[i][j] == 1) cout<<"#";
+			if(i == posx&&j == posy) cout<<"\033[31m"<<"@";
+			else if(res_map[i][j] == 1) cout<<"\033[32m" <<"#";
 			else cout<<" ";
 		}
 		cout<<endl;
@@ -188,7 +188,7 @@ void player_move(int posx,int posy,int dir){
 	gotoxy(posx,posy);
 	cout<<" ";
 	gotoxy(posx + dirx[dir],posy + diry[dir]);
-	cout<<"@";
+	cout<<"\033[1m\033[31m"<<"@";
 }
 
 void game(int w,int h){
