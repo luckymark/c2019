@@ -54,12 +54,12 @@ void decrypt(string &res)
 {
 	LL D, F;
 	exgcd(E, PHI_N, D, F);   //D是 DE===1 (mod phi(N)) 即E对于(P-1)*(Q-1)的逆元
-		res += val;
 	if (D < 0)
 		D += PHI_N;
 	for (int s = 0; s < cipherText.size(); s++)
 	{
 		LL val = qpow(cipherText[s], D, N);  //解密，M = C^D % N
+		res += val;
 	}
 }
 
