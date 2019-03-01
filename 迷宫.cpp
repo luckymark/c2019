@@ -4,8 +4,8 @@
 using namespace std;
 const int length = 20;
 const int width = 50;
-const char wall = '1';
-const char you = 'a';
+const char wall = 35;
+const char you = 42;
 char A[length][width];
 void move(void);
 void create_maze(int a,int b);
@@ -27,7 +27,7 @@ int main()
 			A[i][b] = ' ';
 		}
 	A[1][0] = you;
-	A[length - 2][width - 1] = ' ';
+	A[length - 2][width - 1] = '6';
 
 	create_maze(0,0);
 
@@ -37,7 +37,7 @@ int main()
 			cout << A[i][b];
 			if (b == width - 1)
 				cout << endl;
-		}cout << "上下左右键控制方向，ESC键退出";
+		}cout << "6老师在屏幕左下角的6处等你，请你快去，不然可是要谢罪的。上下左右键控制方向，ESC键退出";
 	
 	move();  
 	
@@ -89,7 +89,7 @@ void move(void)   //移动位置
 				if (b == width - 1)
 					cout << endl;
 			}
-		cout << "上下左右键控制方向，ESC键退出";
+		cout << "6老师在屏幕左下角的6处等你，请你快去，不然可是要谢罪的。上下左右键控制方向，ESC键退出";
 		if (x == length - 2 && y == width - 1)
 			break;
 
@@ -106,8 +106,8 @@ void create_maze(int a, int b)
 	int x, y;
 
 	srand(time(NULL));
-	x = rand() % (length - 2) + 2;
-	y = rand() % (width - 2) + 2;
+	x = rand() % (length - 4) + 2;
+	y = rand() % (width - 4) + 2;
 	for (int i = 1; i <= length; i++)
 		A[i][y] = wall;
 	for (int i = 1; i <= width; i++)
@@ -120,16 +120,16 @@ void create_maze(int a, int b)
 		
 			switch (direction)
 			{
-			case(1): if (x - 2 > 0)
-			{
-				A[x - 2][y] = ' ';  break;
-			}
-					 else A[x - 1][y] = ' ';  break;
-			case(2): if (x + 2 < length)
-			{
-				A[x + 2][y] = ' ';  break;
-			}
-					 else A[x +1][y] = ' ';  break;
+			case(1): 
+			
+				A[x - 1][y] = ' ';  break;
+			
+					
+			case(2):
+			
+				A[x + 1][y] = ' ';  break;
+			
+			
 			case(3):
 			
 				A[x][y - 1] = ' ';  break;
