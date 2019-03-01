@@ -1,14 +1,14 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-void build_primelist(int* A);
+void build_primelist(void);
 bool ISprime(int x);
 const int MAX = 1000000;
 int A[MAX];
 
 int main()    //本代码使用筛法,最大上限为一百万(一个亿太大了。。。算了20几秒数组都还没算完)
 {
-	build_primelist(A);
+	build_primelist();
 	 int n;
 	cin >> n;
 	if (n == 1)
@@ -22,8 +22,11 @@ int main()    //本代码使用筛法,最大上限为一百万(一个亿太大了。。。算了20几秒数组
 
 bool ISprime(int x)
 {
-	if (x % 6 != 1 || x % 6 != 5)     //质数只能是6n+1或者是6n-1的形式
+	if (x > 6)
+	{
+		if (x % 6 != 1 && x % 6 != 5)     //质数只能是6n+1或者是6n-1的形式
 		return false;
+	}
 	if (x % 2 == 0)      
 		return false;
 	for (int i = 2; i <=int(sqrt(x)); i++)  
@@ -35,7 +38,7 @@ bool ISprime(int x)
 	
 }
 
-void build_primelist(int* A)
+void build_primelist(void)
 {
 	fill_n(A, MAX, 1);
 
