@@ -4,7 +4,7 @@
 #include<cstdlib>
 #include<cstring>
 #include<set>
-#include<list>
+#include<string>
 #include<vector>
 #include<ctime>
 
