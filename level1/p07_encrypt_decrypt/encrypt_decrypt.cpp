@@ -1,4 +1,4 @@
-//凯撒加密 + RSA加密 
+//鍑拻鍔犲瘑 + RSA鍔犲瘑
 
 #include<iostream>
 #include<cstring>
@@ -16,7 +16,7 @@ std::string s;
 std::vector<ll> cryption_code;
 int len;
 
-ll pow_mod(ll a,ll b,ll c){             //快速幂计算 
+ll pow_mod(ll a,ll b,ll c){             //蹇�熷箓璁＄畻
 	ll res = 1,t = a%c;
 	while(b){
 		if(b&1){
@@ -28,7 +28,7 @@ ll pow_mod(ll a,ll b,ll c){             //快速幂计算
 	return res;
 }
 
-char Caesar(char c,int type){           //type = 1表示加密  type = -1表示解密 
+char Caesar(char c,int type){           //type = 1琛ㄧず鍔犲瘑  type = -1琛ㄧず瑙ｅ瘑 
     return 33 + (c-33+(type*CCC+93)%93)%93;
 }
 
