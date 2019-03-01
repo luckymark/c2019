@@ -7,6 +7,6 @@ int main()
 		++nf;
 		ns=nf/2;
 	}
-	printf("Diophantus\' age is %d.\n",nf);
+	printf("Diophantus\' age is %d.\n",nf-4);
 	return 0;
 }
