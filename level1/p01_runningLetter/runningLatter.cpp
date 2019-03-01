@@ -1,6 +1,8 @@
 #include<cstdio>
 #include<cstdlib>
-
+/*
+   By HuangChongYi 2018081306006
+*/
 const int _Maxlength=80
 const int time=5000000
 
