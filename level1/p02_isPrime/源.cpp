@@ -1,29 +1,24 @@
 #include<stdio.h>
 #include<math.h>
-void isPrime(int a)
-{
+void isPrime(int a){
 	int b;
 	b = int(sqrt(a));
 	if (b == 1)printf_s("Yes\n");
 	else
-		for (int i = 2; i <= b; i++)
-		{
-			if (a % i == 0)
-			{
+		for (int i = 2; i <= b; i++){
+			if (a % i == 0){
 				printf_s("No\n");
 				break;
 			}
 			else if (i == b)printf_s("Yes\n");
 		}
 }
-int main()
-{
+int main(){
 	int a;
 start:
-	printf_s("ÇëÊäÈëÒ»¸ö´óÓÚ1µÄÕûÊý(ÊäÈë1ÍË³ö)£º");
+	printf_s("è¯·è¾“å…¥ä¸€ä¸ªå¤§äºŽ1çš„æ•´æ•°(è¾“å…¥1é€€å‡º)ï¼š");
 	scanf_s("%d", &a);
-	if (a != 1)
-		{
+	if (a != 1){
 			isPrime(a);
 			goto start;
 		}
