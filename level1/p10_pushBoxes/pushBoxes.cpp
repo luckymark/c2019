@@ -14,8 +14,8 @@ int dirx[4] = {-1,0,1,0};
 int diry[4] = {0,-1,0,1};
 int start_w,start_h,pos; 
 int grades[10];
-std::string Menu[6] = {"Welcome to PushBoxes Game!","You can use WASD to move.","Press 1 to start game.","Press 2 to chose level.",
-                       "Press 3 to see previous grade.","Press 4 to exit game"};
+std::string Menu[6] = {"Welcome to PushBoxes Game!","You can use WASD to move.","Press [ 1 ] to start game.","Press [ 2 ] to chose level.",
+                       "Press [ 3 ] to see previous grade.","Press [ 4 ] to exit game"};
 std::string EditHelper[8] = {"Ohhhhhhhhh,you find it!","This place can edit maps.","Press the level number you want to edit to press.",
                             "Remember to keep boxes number and targets number is equality!","You can use [ + ] and [ - ] to contral blocks."
 							"Press [ B ] to put a Box,and press [ T ] to put a target.","And you can also press [ P ] to chose player's pos.",
@@ -23,8 +23,11 @@ std::string EditHelper[8] = {"Ohhhhhhhhh,you find it!","This place can edit maps
 std::string ErrorInfor[2] = {"The map data is wrong.","It would return after 3 seconds..."};
 std::string Congratulation[3] = {" ","Press N to Next level.","Press [ ESC ] to return menu."};
 std::string con[2] = {"You use "," step solve this level."};
-							
-class Box{
+
+/*<---------------------------------自定义变量结束 --------------------------------->*/ 
+
+//声明一个Box类，用于箱子的移动等操作 							
+class Box{                              
 private:
     int x,y;    
 public:
@@ -47,7 +50,8 @@ public:
     }
 };
 
-class Player{
+//声明一个player类，用于玩家的移动，及对外输出坐标位置 
+class Player{                         
 private:
     int x,y;
 public:
@@ -55,8 +59,9 @@ public:
     	x = posx;
     	y = posy;
     }
-    	
-    bool Moveto(int toX,int toY,int w,int h){
+    
+    //玩家移动 	
+    bool Moveto(int toX,int toY,int w,int h){             
     	if(toX<0||toX>h||toY<0||toY>w) return false;
     	Gotoxy(x,y);
     	std::cout<<" ";
@@ -75,14 +80,16 @@ public:
     	return y;
     }
     
-    void Show(int h){
+    //在控制台上显示 
+    void Show(int h){                             
         Gotoxy(x,y);
 	    std::cout<<"\033[1m\033[31m"<<"@"<<std::endl;
 	    Gotoxy(h + 1,0);
 	}
 };
 
-class MazeMap{
+//声明一个MazeMap类，用于游戏的主要操作，玩家的移动及箱子的判断等 
+class MazeMap{                                
 private:
 	int Map[50][50];
 	int px,py;
@@ -91,7 +98,8 @@ private:
 public:
 	int w,h;
 	
-	void Refresh(int posx,int posy,int edit){
+	//局部刷新地图在控制台的位置，edit=1的时候表示编辑模式 
+	void Refresh(int posx,int posy,int edit){                
 		Gotoxy(posx,posy);
 		switch(Map[posx][posy]){
 			case(0):
@@ -115,7 +123,8 @@ public:
 		Gotoxy(h+1,0);
 	}  
 	
-	void BreakBlock(Player *t){
+	//从这里开始是编辑的一些操作 
+	void BreakBlock(Player *t){                                
 		Map[t->X()][t->Y()] = 0;
 	}
 	
@@ -139,6 +148,7 @@ public:
 		py = t->Y();
 	}
 	
+	//设置初始位置等操作所需接口 
 	void Set(int width,int higth){
 		w = width;
 		h = higth;
@@ -162,10 +172,12 @@ public:
 		t->init(px,py);
 	}
 	
+	//文件输出时所用 
 	int Output(int posx,int posy){
 		return Map[posx][posy];
 	}
 	
+	//对箱子的移动，如果箱子移动成功返回真 
 	bool MoveBox(int toX,int toY,Box* t){
 		if(Map[toX][toY] == 0 || Map[toX][toY] == 3 || Map[toX][toY] == 4){
 			Gotoxy(t->X(),t->Y());
@@ -179,6 +191,7 @@ public:
 		return false;
 	}
 	
+	//玩家是否能移动的判断，如果箱子不能动或者前方是墙等，返回假，表示不能移动 
 	bool canMove(int toX,int toY,int dir){
 		int l = Boxes.size();
 		for(int i = 0;i<l;i++){
@@ -193,6 +206,7 @@ public:
 		else return false;
 	}
 	
+	//检测是否所所有的箱子都在对应位置上面了 
 	bool CheckAllBox(){
 		int l = Boxes.size();
 		for(int i = 0;i<l;i++){
@@ -202,6 +216,7 @@ public:
 		return true;
 	}
 	
+	//显示该地图上面的箱子 
 	void ShowBox(){
 		int l = Boxes.size();
 		for(int i = 0;i<l;i++){
@@ -210,6 +225,7 @@ public:
 		}
 	}
 	
+	//打印地图 
 	void Show(int edit){
 		system("cls");
 		for(int i = 0;i<=h;i++){
@@ -225,6 +241,7 @@ public:
 		ShowBox();
 	}
 	
+	//检测编辑是否合法 
 	bool Check(){
 		BoxNum = TarNum = 0;
 		for(int i = 0;i<=h;i++){
@@ -246,10 +263,12 @@ public:
 MazeMap Maps[10];
 Player player;
 
+//设置控制台大小 
 void preInit(){
 	system("mode con cols=160 lines=40");
 }
 
+//从文件读入地图并存入到MazeMap数组，edit = 1 表示编辑模式 
 void Mapinit(int edit){
 	std::fstream mapfile("gamemap.dat",std::ios::in);
 	std::fstream mapdata("mapdata.dat",std::ios::in);
@@ -269,6 +288,7 @@ void Mapinit(int edit){
 	mapdata.close();
 }
 
+//将整数转换为string类 
 std::string to_string(int x){
 	std::string t,res;
 	while(x!=0){
@@ -281,7 +301,8 @@ std::string to_string(int x){
 	return res;
 }
 
-void PrintInformation(std::string* ss,int num){               //传入字符串数组及个数,并在屏幕中央打印 
+//打印信息的函数，传入字符串数组 
+void PrintInformation(std::string* ss,int num){
     system("cls");
 	int maxx = 0,len;
 	for(int i = 0;i<num;i++){
@@ -320,7 +341,7 @@ void PrintInformation(std::string* ss,int num){               //传入字符串数组及
 }
 
 
-
+//局部刷新使用，将光标移动到对应的位置 
 void Gotoxy(int posx,int posy){
 	COORD CUR;
 	HANDLE hout;
@@ -330,6 +351,7 @@ void Gotoxy(int posx,int posy){
 	SetConsoleCursorPosition(hout,CUR);
 }
 
+//获取玩家按下的键并返回对应的值 
 int GetTabs(){
 	char c = getch();
 	if(c == 27) return 10;
@@ -340,6 +362,7 @@ int GetTabs(){
 	return -1;
 }
 
+//将地图保存到文件中，仅仅在edit模式下使用的函数 
 void SaveMaps(){
 	int th,tw;
 	std::fstream mapfile("gamemap.dat",std::ios::in|std::ios::out|std::ios::trunc);
@@ -356,6 +379,7 @@ void SaveMaps(){
 	mapfile.close();
 }
 
+//对地图进行编辑的一系列操作 
 void Edit(int x){
 	int Command;
 	Mapinit(1);
@@ -414,6 +438,7 @@ void Edit(int x){
 	}
 }
 
+//地图编辑 
 void MapEdit(){
 	int Command;
 	while(1){
@@ -434,7 +459,7 @@ void MapEdit(){
 	}
 }
 
-
+//从文件中获取分数存入数组 
 void GetGrade(){
 	std::fstream file("grade.dat",std::ios::in);
 	for(int i = 1;i<10;i++){
@@ -443,6 +468,7 @@ void GetGrade(){
 	file.close();
 }
 
+//保存分数到文件中 
 void SaveGrade(int x,int level){
 	std::fstream file("grade.dat",std::ios::in|std::ios::out);
 	GetGrade();
@@ -455,6 +481,7 @@ void SaveGrade(int x,int level){
 	file.close();
 }
 
+//打印分数 
 void PrintGrade(){
 	char c;
 	GetGrade();
@@ -465,7 +492,8 @@ void PrintGrade(){
 	if(c == 27) return ;
 }
 
-
+//游戏的主体部分，传入level表示当前玩的关卡，返回值位level+1或0
+//返回level时进入下一关，否则退到菜单栏 
 int GameMain(int level){
 	MazeMap Tmap = Maps[level];
 	Tmap.SetPlayerPos(&player);
@@ -495,7 +523,7 @@ int GameMain(int level){
 			PrintInformation(Congratulation,3);
 			SaveGrade(grade,level);
 			Command = getch();
-			if(Command == 'N'){
+			if(Command == 'n'){
 				if(level == 9) return 0;
 				else return level + 1;
 			}
@@ -503,8 +531,8 @@ int GameMain(int level){
 		}
 	}
 }
-
-void Game(){
+//游戏菜单的部分 
+void GameMenu(){
     Mapinit(0);
     memset(grades,0,sizeof(grades));
     int level = 0;
@@ -552,6 +580,6 @@ void Game(){
 
 int main(){
 	preInit();
-	Game();
+	GameMenu();
 	return 0;
 }
