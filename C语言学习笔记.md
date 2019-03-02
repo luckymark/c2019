@@ -35,10 +35,10 @@
 >COORD结构声明为
 >```
 >typedef struct _COORD {
-  SHORT X;
-  SHORT Y;
-} COORD, *PCOORD;
-```
+> SHORT X;
+> SHORT Y;
+>}COORD, *PCOORD;
+>```
 >使用SetConsoleCursorPosition函数后，可以将控制台光标移动到X,Y位置，X对应行，Y对应为列
 >使用时可以自定义函数以方便调用
 >```
