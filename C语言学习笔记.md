@@ -9,12 +9,6 @@
 >在windows.h库中，可以调用函数`GetAsyncKeyState(VK_LSHIFT)`对键盘进行检测，`VK_LSHIFT`为虚拟健值，`GetAsyncKeyState()`的返回值表示两个内容，一个是最高位bit的值，代表这个键是否被按下，一个是最低位bit的值，代表在上次调用GetAsyncKeyState()后，这个键是否被按下。
 >在检测键盘按下时，应该使用`if(GetAsyncKeyState(VK_LSHIFT)&0x8000)`
 
-
-
-重复的清除屏幕及打印的过程屏幕会闪烁，考虑局部刷新，利用SetConsoleCursorPosition函数来进行光标的跳转，输出空格然后下一个位置输出player的位置即可
-
-将所有的函数利用，组装起来即可，核心是game()函数，首先清空屏幕，然后打印地图及player，再利用while函数检测在到达出口的时候结束，在循环体中接收玩家输入的字符，然后进行对应的操作即可
-
 #### std::cout输出颜色的修改
 在cout后加颜色的关键字即可修改颜色，一次修改会影响后续的输出，所以在用到的时候如果需要不同颜色需要每次输出都加关键字
 >|code                              |  color            |
@@ -35,6 +29,28 @@
   |"\033[1m\033[36m"     |  Bold Cyan |
   |"\033[1m\033[37m"     |  Bold White |
 
+#### windows.h头文件中的部分API的使用
+>###### SetConsoleCursorPosition
+>SetConsoleCursorPosition是windows.h的一个函数，其使用需要传入句柄HOUT及一个COORD坐标
+>COORD结构声明为
+>```
+>typedef struct _COORD {
+  SHORT X;
+  SHORT Y;
+} COORD, *PCOORD;
+```
+>使用SetConsoleCursorPosition函数后，可以将控制台光标移动到X,Y位置，X对应行，Y对应为列
+>使用时可以自定义函数以方便调用
+>```
+>void gotoxy(int posx,int posy){
+>    COORD ccur;
+>    HANDLE hout;
+>    ccur.X = posx;
+>    ccur.Y = posy;
+>    hout = GetStdHandle(STD_OUTPUT_HANDLE);
+>    SetConsoleCursorPosition(hout,ccur);
+>}
+>```
 #### 文件的读写操作
 >reinterpret_cast函数，强制转换，用法：`reinterpret_cast(<char* >)`强制转换为字符类型
 
