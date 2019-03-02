@@ -51,8 +51,8 @@ void GenerateNewMaze()
 			else Maze[i][j] = ' ';
 		}
 	}
-	for (int i = 0; i <= h + 1; ++i)Maze[i][0] = Maze[i][w + 1] = '#';
-	for (int i = 0; i <= w + 1; ++i)Maze[0][i] = Maze[h + 1][i] = '#';
+	for(int i=0;i<=h+1;++i)Maze[i][0]=Maze[i][w+1]='#';
+	for(int i=0;i<=w+1;++i)Maze[0][i]=Maze[h+1][i]='#';
 	DesX = h; DesY = w;
 	NowX = 1; NowY = 1;
 	Maze[DesX][DesY] = 'T';
@@ -62,9 +62,9 @@ void GenerateNewMaze()
 
 void PrintMaze()
 {
-	for (int i = 0; i <= h + 1; ++i)
+	for (int i = 0; i <= h+1; ++i)
 	{
-		for (int j = 0; j <= w + 1; ++j)
+		for (int j = 0; j <= w+1; ++j)
 		{
 			if (i == NowX && j == NowY)printf("S");
 			else printf("%c", Maze[i][j]);
@@ -75,7 +75,7 @@ void PrintMaze()
 
 int main()
 {
-	char ch;
+	unsigned char ch;
 	srand(time(NULL));
 	GenerateNewMaze();
 	PrintMaze();
@@ -85,6 +85,7 @@ int main()
 		if (_kbhit())
 		{
 			ch = _getch();
+			if(ch==224)ch=_getch();
 			if (ch == 72 && Check(NowX - 1, NowY))NowX--;
 			if (ch == 80 && Check(NowX + 1, NowY))NowX++;
 			if (ch == 75 && Check(NowX, NowY - 1))NowY--;
