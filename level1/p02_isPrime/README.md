@@ -1,4 +1,24 @@
-### 功能要求：
+#include <stdio.h>
+#include<math.h>
 
-1. 任意输入一个正整数n
-1. 判断n是否为素数
+int main()
+{
+    int i, num,sprta;
+    printf("Please input a num:");
+    scanf("%d",&num);
+    sprta = sqrt(num);
+    for(i = 2;i<sprta+2;i++)
+    {
+        if(num%i == 0)
+        {
+            printf("no");
+            break;
+        }
+        else if(i >= sprta) 
+        {
+            printf("yes");
+            break;
+        }
+    }
+    return 0;
+}
