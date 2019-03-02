@@ -21,7 +21,7 @@ int GetRand(int LowerBound, int UpperBound)
 
 int Check(int x, int y)
 {
-	return Vis[x][y] == 0 && x*y != 0 && x <= h && y <= w && Maze[x][y] != (char)176;
+	return Vis[x][y] == 0 && Maze[x][y] != '#';
 }
 
 int Dfs(int x, int y)
@@ -47,10 +47,12 @@ void GenerateNewMaze()
 	{
 		for (int j = 1; j <= w; ++j)
 		{
-			if (GetRand(0, 2) == 0)Maze[i][j] = (char)176;
+			if (GetRand(0, 2) == 0)Maze[i][j] = '#';
 			else Maze[i][j] = ' ';
 		}
 	}
+	for (int i = 0; i <= h + 1; ++i)Maze[i][0] = Maze[i][w + 1] = '#';
+	for (int i = 0; i <= w + 1; ++i)Maze[0][i] = Maze[h + 1][i] = '#';
 	DesX = h; DesY = w;
 	NowX = 1; NowY = 1;
 	Maze[DesX][DesY] = 'T';
@@ -60,11 +62,11 @@ void GenerateNewMaze()
 
 void PrintMaze()
 {
-	for (int i = 1; i <= h; ++i)
+	for (int i = 0; i <= h + 1; ++i)
 	{
-		for (int j = 1; j <= w; ++j)
+		for (int j = 0; j <= w + 1; ++j)
 		{
-			if (i == NowX && j == NowY)printf("O");
+			if (i == NowX && j == NowY)printf("S");
 			else printf("%c", Maze[i][j]);
 		}
 		printf("\n");
