@@ -8,9 +8,10 @@ char G[W+1][H];
 
 char WALL = '#', ROAD = ' ';
 
-int D[4][2] = {         // 0L 1U 2R 3D
-	{-1, 0}, {0, 1}, {1, 0}, {0, -1}
-};
+int DX[4] = {-1, 0, 1, 0};
+int DY[4] = {0, 1, 0, -1};
+
+
 
 struct Object
 {
@@ -23,11 +24,11 @@ struct Object
 	}
 	bool canMove(int dir)
 	{
-		return G[x + D[dir][0]][y + D[dir][1]] != WALL;
+		return G[x + DX[dir]][y + DY[dir]] != WALL;
 	}
 	void move(int dir)
 	{
-		x += D[dir][0], y += D[dir][1];
+		x += DX[dir], y += DY[dir];
 	}
 	void draw(char ch)
 	{

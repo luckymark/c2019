@@ -31,8 +31,8 @@ void dfs(int x, int y)
 	}
 	for (int s = 0; s < 4; s++)
 	{
-		int dx = D[rec[s][1]][0];
-		int dy = D[rec[s][1]][1];
+		int dx = DX[rec[s][1]];
+		int dy = DY[rec[s][1]];
 		int nextX = x + dx * 2;
 		int nextY = y + dy * 2;
 		if (nextX < 0 || nextY < 0 || nextX >= W || nextY >= H) continue;
@@ -52,8 +52,8 @@ void generateMap()
 int runGame()
 {
 	Object player, theExit;
-	player.set(1, 1, '@');
-	theExit.set(W-2, H-2, 'E');
+	player.set(1, H-2, '@');
+	theExit.set(W-2, 1, 'E');
 	theExit.draw(theExit.symbol);
 	int mv;
 	while (!cmpPos(player, theExit))
@@ -64,7 +64,7 @@ int runGame()
 			mv = transKeyval(getch());
 			if (player.canMove(mv))
 			{
-				player.draw(ROAD);
+				player.draw('.');
 				player.move(mv);
 			}
 			player.draw(player.symbol);
@@ -79,5 +79,6 @@ int main()
 	system("mode con: cols=84 lines=34");
 	system("title Maze Game");
 	generateMap();
+	print();
 	runGame();
 }
