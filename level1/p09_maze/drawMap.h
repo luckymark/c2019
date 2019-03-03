@@ -2,64 +2,10 @@
 #include<cstdlib>
 #include<cstdio>
 
-const int W = 81, H = 31;
-
-char G[W+1][H];
-
-char WALL = '#', ROAD = ' ';
-
-int DX[4] = {-1, 0, 1, 0};
-int DY[4] = {0, 1, 0, -1};
-
-
-
-struct Object
-{
-	int x, y;
-	char symbol;
-	Object set(int posX, int posY, char ch)
-	{
-		x = posX, y = posY;
-		symbol = ch;
-	}
-	bool canMove(int dir)
-	{
-		return G[x + DX[dir]][y + DY[dir]] != WALL;
-	}
-	void move(int dir)
-	{
-		x += DX[dir], y += DY[dir];
-	}
-	void draw(char ch)
-	{
-		G[x][y] = ch;
-	}
-};
 
 bool cmpPos(Object a, Object b)
 {
 	return a.x == b.x && a.y == b.y;
-}
-
-int transKeyval(int keyVal)
-{
-	switch (keyVal)
-	{
-		case 75:
-			return 0;
-		case 72:
-			return 3;
-		case 77:
-			return 2;
-		case 80:
-			return 1;
-	}
-}
-
-
-void cls()
-{
-	system("cls");
 }
 
 void clear()
@@ -72,7 +18,7 @@ void clear()
 	}
 }
 
-void print()
+void printMap()
 {
 	for (int s = 0; s < H; s++)
 		for (int t = 0; t < W+1; t++)

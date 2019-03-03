@@ -1,53 +1,14 @@
-#include"drawGraphics.h"
 #include<windows.h>
 #include<iostream>
 #include<conio.h>
 #include<cstdio>
 #include<ctime>
 
-int vis[W][H];
-
-void dfs(int x, int y)
-{
-	G[x][y] = ROAD;
-	vis[x][y] = 1;
-
-	int rec[4][2];
-	for (int s = 0; s < 4; s++)
-	{
-		rec[s][0] = rand();
-		rec[s][1] = s;
-	}
-	for (int s = 0; s < 4; s++)
-	{
-		for (int t = s; t < 4; t++)
-		{
-			if (rec[s][0] > rec[t][0])
-			{
-				std::swap(rec[s][0], rec[t][0]);
-				std::swap(rec[s][1], rec[t][1]);
-			}
-		}
-	}
-	for (int s = 0; s < 4; s++)
-	{
-		int dx = DX[rec[s][1]];
-		int dy = DY[rec[s][1]];
-		int nextX = x + dx * 2;
-		int nextY = y + dy * 2;
-		if (nextX < 0 || nextY < 0 || nextX >= W || nextY >= H) continue;
-		if (vis[nextX][nextY]) continue;
-		G[x + dx][y + dy] = ROAD;
-		dfs(nextX, nextY);
-	}
-}
-
-void generateMap()
-{
-	clear();
-	drawSquare(0, 0, H-1, W-1, WALL);
-	dfs(1, 1);
-}
+#include"definition.h"
+#include"drawMap.h"
+#include"mapGenerate.h"
+#include"key.h"
+#include"display.h"
 
 int runGame()
 {
@@ -56,21 +17,23 @@ int runGame()
 	theExit.set(W-2, 1, 'E');
 	theExit.draw(theExit.symbol);
 	int mv;
+	printMap();
 	while (!cmpPos(player, theExit))
 	{
 		if (kbhit())
 		{
-			cls();
 			mv = transKeyval(getch());
 			if (player.canMove(mv))
 			{
-				player.draw('.');
+				print(player.x, player.y, TRAIL);
 				player.move(mv);
 			}
-			player.draw(player.symbol);
-			print();
+			print(player.x, player.y, PLAYER);
 		}
 	}
+	printSquare(0, 0, W-1, H-1, ' ');
+	char str[] = "You win!!";
+	printString(0, 0, str);
 }
 
 int main()
@@ -79,6 +42,5 @@ int main()
 	system("mode con: cols=84 lines=34");
 	system("title Maze Game");
 	generateMap();
-	print();
 	runGame();
 }
