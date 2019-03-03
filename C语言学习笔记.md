@@ -32,9 +32,9 @@ Keuskal算法是图论中常用的最小生成树算法，而在迷宫的生成�
 >2、在C++中没有可以直接删除元素的STL可以使用，那么删除边的时候，考虑在vector中，将随机选取的边每次都和最后一个元素交换，同时用一个整数表示其位置
 >``` 
 >void vector_swap(int x){
-	pos--;
-	swap(edges[x],edges[pos]);
-}
+>    pos--;
+>	 swap(edges[x],edges[pos]);
+>}
 >```
 
 重复的清除屏幕及打印的过程屏幕会闪烁，考虑局部刷新，利用SetConsoleCursorPosition函数来进行光标的跳转，输出空格然后下一个位置输出player的位置即可
