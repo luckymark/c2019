@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<windows.h>
 #define length 117
 int main()
