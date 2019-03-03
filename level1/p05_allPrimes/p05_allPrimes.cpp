@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h> 
+#define N 2000
 bool prime(int n)
 {
 	int i,k;
@@ -17,12 +18,11 @@ bool prime(int n)
 }
 int main(int argc, char *argv[])
 {
-	int i,s,n;
+	int i,s;
 	clock_t start, finish; 
     double Total_time; 
-	scanf("%d",&n);
 	start = clock(); 
-	for(i=2;i<=n;i++)
+	for(i=2;i<=N;i++)
 	{
 		if(prime(i)==1)
 		{
