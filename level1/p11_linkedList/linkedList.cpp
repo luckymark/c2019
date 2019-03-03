@@ -1,7 +1,10 @@
 #include<iostream>
 #include<cstdio>
 #include<ctime>
+#include<conio.h>
 
+
+//链表结点类 
 class linknode{
 private:
     int value;
@@ -27,6 +30,7 @@ public:
     
 };
 
+//链表类 
 class linklist{
 	
 private:
@@ -36,6 +40,7 @@ private:
     int last_search;
 	    
 public:
+    //添加结点 
     void insert(int value){
     	linknode* now = new linknode;
     	now->init(value);
@@ -50,6 +55,7 @@ public:
 		size++;
     }
     
+    //搜索某个元素 
     int search(int x){
     	if(x != last_search) search_pos = -1;
     	last_search = x;
@@ -67,6 +73,7 @@ public:
 		}
 	}
     
+    //将链条反转，递归 
     linknode* back(linknode* fa){
     	linknode* p = fa->next();
     	if(fa->next() == NULL) return fa;
@@ -127,5 +134,7 @@ int main(){
 	std::cout<<t.search(5)<<std::endl;
 	std::cout<<"the pos of next 5 is:"<<std::endl;
 	std::cout<<t.search(5)<<std::endl;
+	std::cout<<"按下任意键退出......"; 
+	getch(); 
 	return 0;
 }
