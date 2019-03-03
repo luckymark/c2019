@@ -12,7 +12,7 @@ int main ()
 	}
 	for(a=80;a>=0;a--){
 		for(b=0;b<=a;b++){
-		printf(" ");
+			printf(" ");
 		}
 		printf("%c ",'R');
     	system("cls");
