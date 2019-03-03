@@ -1,10 +1,7 @@
 #include <stdio.h>
-#define N 3
+#define N 64 
 void exchange(int n, char a, char b, char c) ;
 int main(){
-//	char a='a';
-//	char b='b';
-//	char c='c';
 	exchange(N, 'a', 'b','c');
 	
 }
