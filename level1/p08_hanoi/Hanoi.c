@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 12
-
 long count = 0;
 
 void move(int i, int j) {
@@ -32,7 +30,10 @@ void hanio(int n, int i, int j) {
 }
 
 int main() {
-    hanio(N, 0, 1);
+    int n;
+    printf("input the total count of disks: ");
+    scanf("%d", &n);
+    hanio(n, 0, 1);
     printf("total steps: %d\n", count);
 
     system("pause");
