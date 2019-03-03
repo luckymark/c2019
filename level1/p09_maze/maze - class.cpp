@@ -23,6 +23,8 @@ struct point{
 	point(int h,int w):x(h),y(w){}
 };
 
+
+//声明迷宫地图类，可以调用函数用于刷新及打印地图 
 class MazeMap{
 private:
     int pos,set_len;
@@ -31,6 +33,7 @@ private:
     vector<edge> edges;
     vector<point> point_set;
     
+    //内部并查集、交换元素、取边函数 
     int tfind(int x){
 	    return x == fa[x]?x:fa[x] = tfind(fa[x]);
     }	
@@ -40,14 +43,15 @@ private:
 	    swap(edges[x],edges[pos]);
     }
     
-    int get_rand(){                            //随机取边 
+    int get_rand(){                  
 	    int now = pos,rand_num;
 	    srand(int(time(0)));
 	    rand_num = rand()%now;
         return rand_num;
     }
 public:
-    vector<point> refresh(int w,int h){       //Kruskal算法生成迷宫 
+    //Kruskal算法生成迷宫 
+    vector<point> refresh(int w,int h){ 
 	    edges.clear();
 	    point_set.clear();
 	    w = 2*w + 2,h = 2*h+2;
@@ -107,6 +111,7 @@ public:
 	    return res;
     }
     
+    //打印地图 
     void Show(int posx,int posy,int w,int h){
         for(int i = 0;i<=h;i++){
 		    for(int j = 0;j<=w;j++){
@@ -131,11 +136,13 @@ string s[7] = {"Welcome to Decision's maze!","You can use WASD to move.","Press 
                "Press 5 to exit."};
 string con_information[3] = {"CONGRATULATIONS!","You are out of the maze!","Press 1 to menu."};
 
+//设置控制台大小 
 void preInit(){
 	system("mode con cols=160 lines=40");
 }
 
-void Gotoxy(int posx,int posy){            //光标跳转用于局部清除 
+//光标跳转用于局部清除 
+void Gotoxy(int posx,int posy){            
 	COORD CUR;
 	HANDLE hout;
 	CUR.X = posy;
@@ -144,6 +151,7 @@ void Gotoxy(int posx,int posy){            //光标跳转用于局部清除
 	SetConsoleCursorPosition(hout,CUR);
 }
 
+//玩家移动 
 void PlayerMove(int posx,int posy,int dir){
 	Gotoxy(posx,posy);
 	cout<<" ";
@@ -151,7 +159,8 @@ void PlayerMove(int posx,int posy,int dir){
 	cout<<"\033[1m\033[31m"<<"@";
 }
 
-void PrintInformation(string* ss,int num){               //传入字符串数组及个数,并在屏幕中央打印 
+//传入字符串数组及个数,并在屏幕中央打印 
+void PrintInformation(string* ss,int num){               
     system("cls");
 	int maxx = 0,len;
 	for(int i = 0;i<num;i++){
@@ -190,14 +199,16 @@ void PrintInformation(string* ss,int num){               //传入字符串数组及个数,
 	}
 }
 
+//获取移动方向 
 int GetDir(){
 	char c = getch();
-	if(c == 'W') return 0;
-	else if(c == 'A') return 1;
-	else if(c == 'S') return 2;
-	else if(c == 'D') return 3;
+	if(c == 'w') return 0;
+	else if(c == 'a') return 1;
+	else if(c == 's') return 2;
+	else if(c == 'd') return 3;
 }
 
+//游戏主函数 
 void game(int w,int h){
 	system("cls");
 	MazeMap Maze;
@@ -228,6 +239,7 @@ void game(int w,int h){
 	}	
 }
 
+//菜单栏 
 void menu(){
 	int t;
 	while(1){
