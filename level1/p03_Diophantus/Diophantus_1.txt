@@ -1,0 +1,23 @@
+#include<stdio.h>
+#define YEAR 365
+#define BS 12*7
+int main(){
+	int a;
+	int year,day;
+	 
+	for(a=BS;a<125*YEAR;a+=BS){                     //以天数公倍数递加
+		int b=a/6+a/12+a/7+5*YEAR;                  //b为有孩子后的岁数（单位 天）
+		int c;                                      
+		for(c=0;b<a;b++,c++){                       //c为孩子天数，b、c一起增长，直到丢番图死亡
+			if((a+0.5)/2==c&&(a-b)==4*YEAR){        //如果 孩子生存天数是丢番图一半 且此时 丢番图距离死亡仅剩四年
+				year=b/YEAR;
+				day=b%YEAR;
+			}
+		}
+	}
+	
+	printf("儿子死时丢番图 %d岁%d天 大",year,day);    
+	
+	return 0;
+} 
+/* 不知道哪里出了问题*/
