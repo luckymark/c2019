@@ -22,7 +22,7 @@ int main()
 			}
 		}
 	}
-	for (i = 1; i <= 1000; i++)
+	for (i = 2; i <= 1000; i++)
 	{
 		if (Prime[i])
 		{
