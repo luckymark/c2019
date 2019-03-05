@@ -4,11 +4,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
-
-/**
- * todo:
- * 1.闅忔満鐢熸垚杩峰
- */
+#include <string>
 
 using namespace std;
 
@@ -17,10 +13,10 @@ const int NUM_WALL = 1;
 const int NUM_PLAYER = 2;
 const int NUM_EXIT = 4;
 
-const char SYMBLE_PATH = ' ';
-const char SYMBLE_WALL = '#';
-const char SYMBLE_PLAYER = '@';
-const char SYMBLE_EXIT = '*';
+const string SYMBLE_PATH = "  ";
+const string SYMBLE_WALL = "■";
+const string SYMBLE_PLAYER = "●";
+const string SYMBLE_EXIT = "★";
 
 const int MAP_MAX_SIZE = 50;
 
@@ -34,7 +30,7 @@ const int DIR_ARR[2][4] = {
     {-1, 1, 0, 0}   // y
 };
 
-void gotoxy(short x, short y) {  // 璁剧疆鍏夋爣浣嶇疆锛岀敤浜庡眬閮ㄥ埛鏂帮紝瑙ｅ喅闂儊闂
+void gotoxy(short x, short y) {  // 设置光标位置，用于局部刷新，解决闪烁问题
     COORD pos = {x, y};
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleCursorPosition(hOut, pos);
@@ -131,12 +127,12 @@ void Player::move(int dir) {
     if (map.map[pos.y + DIR_ARR[1][dir]][pos.x + DIR_ARR[0][dir]] != NUM_WALL) {
         map.map[pos.y][pos.x] = NUM_PATH;
         gotoxy(2 * pos.x - 2, pos.y - 1);
-        cout << SYMBLE_PATH << " ";
+        cout << SYMBLE_PATH;
         pos.y += DIR_ARR[1][dir];
         pos.x += DIR_ARR[0][dir];
         map.map[pos.y][pos.x] = NUM_PLAYER;
         gotoxy(2 * pos.x - 2, pos.y - 1);
-        cout << SYMBLE_PLAYER << " ";
+        cout << SYMBLE_PLAYER;
         checkWin();
     }
 }
@@ -185,16 +181,16 @@ void Map::printMap() {
         for (int j = 1; j <= cols; j++) {
             switch (map[i][j]) {
                 case NUM_PATH:
-                    cout << SYMBLE_PATH << " ";
+                    cout << SYMBLE_PATH;
                     break;
                 case NUM_WALL:
-                    cout << SYMBLE_WALL << " ";
+                    cout << SYMBLE_WALL;
                     break;
                 case NUM_PLAYER:
-                    cout << SYMBLE_PLAYER << " ";
+                    cout << SYMBLE_PLAYER;
                     break;
                 case NUM_EXIT:
-                    cout << SYMBLE_EXIT << " ";
+                    cout << SYMBLE_EXIT;
                     break;
                 default:
                     break;
