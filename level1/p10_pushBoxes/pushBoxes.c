@@ -86,8 +86,7 @@ void GetCopy(int _case)
 {
 	FILE *fp;
 	char FileName[20];
-	sprintf(FileName, ".\\maps\\%d.txt", _case);
-	remove(FileName);
+	sprintf(FileName, ".\\maps\\%d.swp", _case);
 	fp = fopen(FileName, "w");
 	fprintf(fp, "%d %d\n", h, w);
 	for (int i = 0; i <= h + 1; ++i)
@@ -98,11 +97,14 @@ void GetCopy(int _case)
 void AddScore(int _case, int _score)
 {
 	FILE *fp;
-	char FileName[20];
-	sprintf(FileName, ".\\maps\\%d.txt", _case);
-	fp = fopen(FileName, "a+");
+	char FileName_1[20], FileName_2[20];
+	sprintf(FileName_1, ".\\maps\\%d.txt", _case);
+	sprintf(FileName_2, ".\\maps\\%d.swp", _case);
+	fp = fopen(FileName_2, "a+");
 	fprintf(fp, "%d", _score);
 	fclose(fp);
+	remove(FileName_1);
+	rename(FileName_2, FileName_1);
 }
 
 int main()
