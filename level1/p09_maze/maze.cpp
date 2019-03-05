@@ -6,9 +6,8 @@
 #include <iostream>
 
 /**
- * todo: 
- * 1.双缓冲解决闪烁问题
- * 2.随机生成迷宫
+ * todo:
+ * 1.随机生成迷宫
  */
 
 using namespace std;
@@ -34,6 +33,12 @@ const int DIR_ARR[2][4] = {
     {0, 0, -1, 1},  // x
     {-1, 1, 0, 0}   // y
 };
+
+void gotoxy(short x, short y) {  // 设置光标位置，用于局部刷新，解决闪烁问题
+    COORD pos = {x, y};
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(hOut, pos);
+}
 
 struct Point {
     int x;
@@ -125,10 +130,13 @@ Player::Player(const char* mapFile) : map(mapFile) {
 void Player::move(int dir) {
     if (map.map[pos.y + DIR_ARR[1][dir]][pos.x + DIR_ARR[0][dir]] != NUM_WALL) {
         map.map[pos.y][pos.x] = NUM_PATH;
+        gotoxy(2 * pos.x - 2, pos.y - 1);
+        cout << SYMBLE_PATH << " ";
         pos.y += DIR_ARR[1][dir];
         pos.x += DIR_ARR[0][dir];
         map.map[pos.y][pos.x] = NUM_PLAYER;
-        map.printMap();
+        gotoxy(2 * pos.x - 2, pos.y - 1);
+        cout << SYMBLE_PLAYER << " ";
         checkWin();
     }
 }
@@ -196,7 +204,7 @@ void Map::printMap() {
     }
 }
 
-void consoleInit(){
+void consoleInit() {
     system("color 2");
     CONSOLE_CURSOR_INFO cursor_info = {1, 0};
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
