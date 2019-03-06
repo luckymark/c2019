@@ -9,7 +9,7 @@
 #include"key.h"
 #define BAR 40
 #define RUNNING 1
-#define bufLim 3000;
+#define bufLim 3000
 
 std::string information = "<<<<<<<<<<<<<<<<<Warehouse>>>>>>>>>>>>>>  Type 'help' for commands\n";
 std::string helpMessage = "add [itemName] [number]          ----Add something\nremove [itemName] [number]       ----Remove something in the list\nls                               ----View the list\nexit                             ----Exit the warehouse\n";
@@ -82,8 +82,9 @@ void loadFile()
 	fscanf(fp, "%d", &total);
 	for (int s = 0; s < total; s++)
 	{
-		char ch[100] = {'\0'};
+		char ch[bufLim];
 		fscanf(fp, "%s", ch);
+		tmp.name = "";
 		for (int s = 0; s < strlen(ch); s++)
 			tmp.name += ch[s];
 		fscanf(fp, "%d", &tmp.number);
