@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+void jiami (int temp[],char arry[]);
+void jiemi(int temp[],char arry[]);
+int main()
+{
+    int i;
+    int temp1[2000] = {0};
+    char arry1[2000];
+    char arry2[2000];
+    char confirm[200];
+    jiami(temp1,arry1);
+    jiemi(temp1,arry2);
+   return 0;
+}
+   
+void jiami (int temp[], char arry[])
+   {
+    int i;
+    gets(arry);
+    printf("the secret is:\n");
+    for(i = 0;i<strlen(arry);i++)
+    {
+   temp[i] = 2*(i+1)*arry[i] +i*i+i;
+   printf("%d",temp[i]);
+    }
+    printf("\n");
+    }
+    
+void jiemi(int temp[],char arry[])
+{
+    int i;
+    for(i = 0;temp[i];i++)
+    {
+        arry[i] = (temp[i] - i - i*i)/(2*i+2);
+        printf("%c",arry[i]);
+    }
+}
