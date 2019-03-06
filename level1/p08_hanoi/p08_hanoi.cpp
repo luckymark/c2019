@@ -9,7 +9,7 @@ void hanoi(int n,char a,char b,char c)
 	{
 		hanoi(n-1,a,c,b);
 		printf("%c→%c\n",a,c);
-		hanoi(n-1,b,a,c);
+		hanoi(n-1,b,a,c); 
 	}
 } 
 int main(int argc, char *argv[])
@@ -23,10 +23,6 @@ int main(int argc, char *argv[])
 	hanoi(n,'A','B','C');
 	finish = clock();                              
     Total_time = (double)(finish-start) / CLOCKS_PER_SEC;
-    printf( "%f seconds\n", Total_time);  
+    printf( "运行时间：%f seconds\n", Total_time);  
 	return 0;
-}                            
-//                                             
-                             
-//                                             
-         
+}     
