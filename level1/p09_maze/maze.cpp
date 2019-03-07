@@ -14,7 +14,7 @@ const int NUM_PLAYER = 2;
 const int NUM_EXIT = 4;
 
 const string SYMBLE_PATH = "  ";
-const string SYMBLE_WALL = "¡ö";
+const string SYMBLE_WALL = "¨ˆ";
 const string SYMBLE_PLAYER = "¡ñ";
 const string SYMBLE_EXIT = "¡ï";
 

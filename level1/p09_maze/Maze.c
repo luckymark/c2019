@@ -19,7 +19,7 @@
 const char* BANNER_PATH = "banner.txt";
 
 const char* SYMBLE_PATH = "  ";
-const char* SYMBLE_WALL = "¡ö";
+const char* SYMBLE_WALL = "¨ˆ";
 const char* SYMBLE_PLAYER = "¡ñ";
 const char* SYMBLE_EXIT = "¡ï";
 
