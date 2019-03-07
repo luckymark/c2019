@@ -27,7 +27,7 @@ int main()
 			A[i][b] = ' ';
 		}
 	A[1][0] = you;
-	A[length - 2][width - 1] = '6';
+	A[length - 2][width - 1] = 'Áù';
 
 	create_maze(0,0);
 
