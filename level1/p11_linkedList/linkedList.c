@@ -15,7 +15,7 @@ int main()
     LinkNode *list, *temp;
     for (i = 0; i < length; i++)
     {
-        LinkNode *l = (LinkNode *)malloc(sizeof(length));
+        LinkNode *l = (LinkNode *)malloc(sizeof(LinkNode)*length);
         i != 0 ? (temp->next = l) : list = l;
         l->value = i;
         temp = l;
