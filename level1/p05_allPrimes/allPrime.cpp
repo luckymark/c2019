@@ -16,6 +16,6 @@ int main(){
 		}
 	}
 	te=clock();
-	printf("\n运行时间%d毫秒",te-ts);
+	printf("\n%d ms",te-ts);
 	return 0;
 }
