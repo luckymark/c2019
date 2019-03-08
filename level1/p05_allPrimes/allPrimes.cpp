@@ -5,13 +5,11 @@
 int prime(int a);
 int main()
 {
-	int i,t1,t2;
-	t1=clock();
+	int i;
 	for(i=2;i<=N;++i)
 		if(prime(i))
 			printf("%d\n",i);
-	t2=clock();
-	printf("Working time:%dms\n",t2-t1);
+	printf("Working time:%.4lfsec\n",(double)clock()/CLOCKS_PER_SEC);
 	return 0;
 }
 int prime(int a)

@@ -7,20 +7,7 @@ int main()
 {
 	int i;
 	for(i=100;i<=999;++i)
-		if(i==pow(ge(i),3)+pow(shi(i),3)+pow(bai(i),3))
+		if(i==pow(i%100%10,3)+pow(i/10%10,3)+pow(i/100,3))
 			printf("%d\n",i);
 	return 0;
-}
-int ge(int a)
-{
-	return a-10*shi(a)-100*bai(a);	//123-10*2-100*3
-}
-int shi(int b)
-{
-	b-=100*bai(b);
-	return b/10;
-}
-int bai(int c)
-{
-	return c/100;
 }
