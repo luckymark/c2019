@@ -243,7 +243,7 @@ int show(int level, int step, int **xoy)
             printf("      [W A S D 移动]");
             break;
         case 9:
-            printf("      [S 保存 R 重置]");
+            printf("      [G 保存 R 重置]");
             break;
         default:
             break;

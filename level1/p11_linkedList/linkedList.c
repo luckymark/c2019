@@ -4,12 +4,13 @@
 struct LinkNode
 {
     int value;
-    LinkNode *next;
+    LinkNode *next; 
 };
 int main()
 {
     int length = 10;
     int i;
+    
     //1.init,2.traversal
     LinkNode *list, *temp;
     for (i = 0; i < length; i++)
