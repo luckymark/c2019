@@ -14,9 +14,9 @@ int main(){
 		}
 	}
 	if(goldbach==range/2-1)
-		printf("%d以内成立",range); 
+		printf("%dis workable",range); 
 	else
-		printf("%d以内不成立",range);
+		printf("%d is not workable",range);
 	return 0;
 }
 int isPrime(int num){
