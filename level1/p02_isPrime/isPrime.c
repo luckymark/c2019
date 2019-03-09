@@ -11,9 +11,9 @@ int main()
 			s++;
 	}
 	if (s == 0)
-		printf("%d\n", n);
+		printf("%d是素数。", n);
 	else
-		printf("%d\n", n);
+		printf("%d不是素数。", n);
 	
 	return 0;
 }
