@@ -3,7 +3,6 @@
 #include<conio.h>
 #define MAPM 10
 #define MAPN 21
-#define NAME F
 struct point
 {
 	int x;
@@ -22,8 +21,8 @@ char map[MAPM][MAPN]={"####################",
 char playerpos[MAPM][MAPN];						//player's position
 void cls();										//clear screen
 void clm(char map[MAPM][MAPN]);					//clear map
-void creatm(char map[MAPM][MAPN]);				//creat map
-void printm(char map[MAPM][MAPN]);				//print map
+void creatm();									//creat map
+void printm();									//print map
 void indir();									//input direction
 int main()
 {
@@ -35,11 +34,11 @@ int main()
 	while(map[player.y][player.x]!='E')
 	{
 		cls();
-		printm(map);
+		printm();
 		indir();
 	}
 	cls();
-	printm(map);
+	printm();
 	printf("Congratulations!\n");
 	return 0;
 }
@@ -54,10 +53,10 @@ void clm(char map[MAPM][MAPN])
 		for(y=0;y<MAPN;++y)
 			map[x][y]=' ';
 }
-void creatm(char map[MAPM][MAPN])
+void creatm()
 {
 }
-void printm(char map[MAPM][MAPN])
+void printm()
 {
 	int x,y;
 	for(x=0;x<MAPM;++x)
