@@ -98,11 +98,11 @@ void list() {
 }
 
 void input() {
+    system("cls");
     char name[20];
     int size = 0;
     int count = 0;
     good* tg;
-    system("cls");
     printf("请输入数据:\n");
     printf("1.货物名称：");
     scanf("%s", name);
@@ -132,8 +132,8 @@ void input() {
 }
 
 void output() {
-    int success = 0;
     system("cls");
+    int success = 0;
     unsigned long id;
     do {
         printf("请输入要出库的货物的id：");
@@ -191,7 +191,7 @@ void dumpExit() {
     fclose(fp);
 
     // exit
-    if (!goods) free(goods);
+    if (goods) free(goods);
     goods = NULL;
     exit(0);
 }
