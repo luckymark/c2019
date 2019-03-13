@@ -4,8 +4,7 @@
 
 void encrypt(char* des, char* src) {
     int n = strlen(src);
-    int i;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         des[i] = ((~src[i] & 127) + 43) % 95 + 32;
     }
     des[n] = '\0';
@@ -13,8 +12,7 @@ void encrypt(char* des, char* src) {
 
 void decrypt(char* des, char* src) {
     int n = strlen(src);
-    int i;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         des[i] = ~(((((int)src[i] - 32 + 95) % 95) - 43 + 95) % 95) & 127;
     }
     des[n] = '\0';
