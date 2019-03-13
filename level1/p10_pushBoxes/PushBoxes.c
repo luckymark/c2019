@@ -4,6 +4,7 @@
 #include <string.h>
 #include <windows.h>
 #include <math.h>
+#include <stdbool.h>
 
 #define NUM_PATH 0
 #define NUM_WALL 1
@@ -59,7 +60,7 @@ void consoleInit();
 void gotoxy(short x, short y);
 int caclScore(int a, int b);
 int containedInHolders(int x, int y);
-int checkWin();
+bool checkWin();
 void startGame();
 void initMap();
 void readRecords();
@@ -243,13 +244,13 @@ void initMap() {
     printInfo();
 }
 
-int checkWin() {
+bool checkWin() {
     for(int i = 0; i < holderSize; i++) {
         if(map[holders[1][i]][holders[0][i]] != NUM_BOX) {
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
 void endGame() {
