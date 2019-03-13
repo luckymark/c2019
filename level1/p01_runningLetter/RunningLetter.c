@@ -1,28 +1,23 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define WIDTH 100
 
-int main()
-{
-
+int main() {
     int i, j;
+    bool flag = false;
     char pads[WIDTH] = "";
 
-    while (1)
-    {
-        for (i = 0; i < WIDTH - 1; i++)
-        {
-            strcat(pads, " ");
-            printf("%s", pads);
-            putchar('A');
-            system("CLS");
-        }
-
-        for (i = 0; i < WIDTH - 1; i++)
-        {
-            pads[strlen(pads) - 1] = '\0';
+    while (1) {
+        flag = !flag;
+        for (i = 0; i < WIDTH - 1; i++) {
+            if (flag) {
+                strcat(pads, " ");
+            } else {
+                pads[strlen(pads) - 1] = '\0';
+            }
             printf("%s", pads);
             putchar('A');
             system("CLS");
