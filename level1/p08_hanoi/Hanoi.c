@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-long count = 0;
+unsigned long count = 0;
 
 void move(int i, int j) {
     ++count;
@@ -9,8 +9,7 @@ void move(int i, int j) {
 }
 
 int left(int i, int j) {
-    int k;
-    for(k = 0; k < 3; k++) {
+    for(int k = 0; k < 3; k++) {
         if(k != i && k != j) return k;
     }
     return -1;
