@@ -21,7 +21,6 @@ void initList() {
         node* tn = (node*)malloc(sizeof(node));
         tn->next = NULL;
         tn->val = 2 + rand() % 7;
-        // printf("val: %d\n", tn->val);
         if (!i) {
             head = tnp = tn;
             continue;
