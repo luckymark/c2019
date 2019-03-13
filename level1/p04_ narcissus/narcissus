@@ -1,0 +1,19 @@
+#include<cstdio>
+#include<cstring>
+#define FOR(i,a,b) for(int i=a;i<=b;i++)
+//by HuangChongYi 2018081306006
+using namespace std;
+int answer[999];
+int answer_count;
+int main(){
+	answer_count=0;
+	FOR(i,1,9)
+		FOR(j,0,9)
+			FOR(k,0,9)
+				if (i*100+j*10+k==i*i*i+j*j*j+k*k*k) 
+					answer[++answer_count]=i*100+j*10+k;
+	FOR(i,1,answer_count){
+		printf("%d\t",answer[i]);
+	}
+	return 0;
+} 
