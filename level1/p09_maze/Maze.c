@@ -35,6 +35,25 @@ int endX, endY;
 int playerWin = 0;
 int playerX, playerY;
 
+void consoleInit();
+void gotoxy(short x, short y);
+void startGame(const char* mapFile);
+void initMap(const char* mapFile);
+void printMap();
+void listenKey();
+void movePlayer(int dir);
+void checkWin();
+void endGame();
+
+int main() {
+    consoleInit();
+    startGame("map.txt");
+
+    printf("\n");
+    system("pause");
+    return 0;
+}
+
 void consoleInit() {
     system("color 2");
     CONSOLE_CURSOR_INFO cursor_info = {1, 0};
@@ -165,13 +184,4 @@ void startGame(const char* mapFile) {
     printMap();
     listenKey();
     endGame();
-}
-
-int main() {
-    consoleInit();
-    startGame("map.txt");
-
-    printf("\n");
-    system("pause");
-    return 0;
 }
