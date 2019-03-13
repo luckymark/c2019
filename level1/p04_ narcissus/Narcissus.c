@@ -2,9 +2,8 @@
 #include <stdlib.h>
 
 int main() {
-    int i;
     int a, b, c;
-    for (i = 100; i < 999; i++) {
+    for (int i = 100; i < 999; i++) {
         a = i / 100;
         b = (i - a * 100) / 10;
         c = i % 10;
