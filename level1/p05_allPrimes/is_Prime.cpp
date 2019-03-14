@@ -3,7 +3,7 @@
 int main()
 {
     int n;
-    int funCode = 1; //zero is allPrimes,one is isPrime
+    int funCode = 0; //zero is allPrimes,one is isPrime
     while (scanf("%d", &n) == 1 && n > 1)
     {
         int A[MAX_RANGE] = {0}; //Use zero to represent this is a prime.Use one to represent this is a prime.
