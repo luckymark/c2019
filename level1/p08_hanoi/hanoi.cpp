@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <stdio.h>
 //Let f(n) be the solution of n plates.So just let f(n-1) move to temp storage pillar,the left one plate to
 //the target pillar.At last move (n-1) plates in temp storage pillar to target pillar.
 //Obviously,Recursion is a good method to solve this problem.

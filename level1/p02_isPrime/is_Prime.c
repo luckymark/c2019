@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <stdio.h>
 #define MAX_RANGE /*(2 << 29 - 1)*/ 100000
 int main()
 {

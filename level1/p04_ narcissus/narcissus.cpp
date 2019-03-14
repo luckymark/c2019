@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <stdio.h>
 void get_threeDigit_Number(const int targetnumber,int *digit_number)
 {
     int i=targetnumber;
