@@ -1,7 +1,9 @@
 #include <cstdio>
 #define MAX_RANGE /*(2 << 29 - 1)*/ 100000
+#include <time.h>
 int main()
 {
+    clock_t t1 = clock();
     int n;
     int funCode = 0; //zero is allPrimes,one is isPrime
     while (scanf("%d", &n) == 1 && n > 1)
@@ -23,6 +25,7 @@ int main()
                     break;
             }
         }
+        clock_t t2 = clock();
         if (!funCode)
         {
             for (int i = 2; i <= n; i++)
@@ -34,5 +37,6 @@ int main()
 
             (!A[n]) ? printf("%d is prime ", n) : printf("%d is not prime ", n);
         }
+        printf("Execution time is: %fs\n", double(t2-t1)/CLOCKS_PER_SEC);
     }
 }
