@@ -1,14 +1,18 @@
-#include<iostream>
+#include <iostream>
+#include<cmath>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 using namespace std;
-int main()
-{
-	for(int i=120;i<=999;i++)
+int main(int argc, char** argv) {
+	int a;
+	cin>>a;
+	for(int i=2;i<=sqrt(a);i++)
 	{
-		int h=(i-i%100)/100;
-		int t=(i%100)/10;
-		int o=(i%10);
-		if(h*h*h+t*t*t+o*o*o==i)cout<<i<<endl;
+		if(a%2==0)
+		{
+			cout<<"no!";
+			return 0;
+		}
 	}
+	cout<<"yes";
 	return 0;
 }
-

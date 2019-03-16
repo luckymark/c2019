@@ -1,20 +1,35 @@
 #include<iostream>
-#include<cmath>
 using namespace std;
-/* 由于我不能很好的理解递归的思想
-这里采用数学分析的方法  我们从最底下个盘子往上走
-最底下那个盘子只需要移动一次就够了
-倒数第二个盘子需要配合最底下盘子移动一次 然后自己归到第三个柱子移动一次 一共2此
-而倒数第三个盘子需要配合倒数第二个盘子和倒数第一个盘子移动三次 最后自己移动一次
-因此我们可以列出递推式子 即 an=（Sn-1）+1 第n项等于前n项之和加1
-不难推得an=2^(n-1)  因此所求Sn=(2^n)-1*/ 
+void hanio(int,char,char,char);
+void move(int,char,char);
+unsigned long long times=0;
 int main()
 {
-	unsigned long long in,out;
-	cout<<"请输入有多少个盘子"<<endl;
-	cin>>in;
-	out=exp(in*log(2))-1;
-	cout<<"需要移动"<<out<<"次";
-	return 0;
+	int e=0;
+	cout<<"请输入盘子数";
+	cin>>e;
+	if(e>=2)hanio(e,'x','z','y');//从x到z 依赖于y 
+	else 
+	{
+		times++;
+		cout<<"把1号盘从a移动到c位置"<<endl;
+	}
+	cout<<"一共移动了"<<times<<"次"; 
+	return 0; 
+ } 
+void hanio(int n,char from,char to,char depend)
+{
+	if(n==1)move(1,from,depend);
+	else
+	{
+		hanio(n-1,from,to,depend);//我有时候也不是很能理解这里 不过貌似移动盘子只需要先把其他的从x 到y 再从y 到z就可以了 
+		move(n,from,to);
+		hanio(n-1,depend,from,to);
+	}
+}
+void move(int n,char from,char to)
+{
+	cout<<"把"<<n<<"号盘从"<<from<<"移动到"<<to<<"位置"<<endl;
+	times++;
 }
 

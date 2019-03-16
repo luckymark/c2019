@@ -1,8 +1,8 @@
 #include<iostream>
 #include<conio.h>
 #include<string.h>
-#define MAPLE_X 11
-#define MAPLE_Y 23
+#define MAPLE_X 11 //MAPLE_X 和 MAPLE_Y 代表了 长和宽  
+#define MAPLE_Y 23  //地图手动输入在in.txt文件夹里面 
 #define P players
 #include<Windows.h>
 using namespace std;
