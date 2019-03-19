@@ -33,3 +33,9 @@ tolower ，toupper函数：    tolower()即可。 前者将大写转化为小写
 getline(cin,a) 可以直接读取一整行
 
 a.length()能测string的长度
+
+cout.width(int i)  能够让下一个字符输出时放在一个宽度为i字符的字段的最右边，用cout.fill('x')可以用x填充空白部分，与前面不同的是这个字符会一直生效。
+
+写入文件时，需要包含头文件fstream(不用再包含iostream),然后声明一个ofstream对象(名称随意)，并使用open(" ")方法，把对象与文件关联起来。（或者使用 ofstream xx("yy")一步到位）最后像使用cout一样，将数据写入文件。
+
+读入文件和上面相似。
