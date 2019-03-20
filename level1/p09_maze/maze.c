@@ -44,9 +44,9 @@ int main()
 	int p = 0;
 	while(1)
 	{
-	  p = move();
-	  if(p == 1 || p == -1)
-		return 0;
+		p = move();
+		if(p == 1 || p == -1)
+			return 0;
 	}	
 	return 0;
 }
@@ -75,13 +75,13 @@ int move()
 		p = 0;
 		place();
 		print();
-		printf("操作提示：w a s d控制人物移动，按Esc退出游戏\n");
+		printf("操作提示：上 下 左 右 控制人物移动，按Esc退出游戏\n");
 		switch(getch())
 		{
-		case 'w':p = Up();break;
-		case 'a':p = Left();break;
-		case 's':p = Down();break;
-		case 'd':p = Right();break;
+		case 72:p = Up();break;
+		case 75:p = Left();break;
+		case 80:p = Down();break;
+		case 77:p = Right();break;
 		case 27:return -1;
 		}
 		if(p == 1)
