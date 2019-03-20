@@ -7,7 +7,12 @@ int main(int argc, char** argv) {
 	cin>>a;
 	for(int i=2;i<=sqrt(a);i++)
 	{
-		if(a%2==0)
+		if(a==2)
+		{
+			cout<<"yes";
+			return 0;
+		}
+		else if(a%i==0)
 		{
 			cout<<"no!";
 			return 0;
