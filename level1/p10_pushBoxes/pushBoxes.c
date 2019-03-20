@@ -103,7 +103,7 @@ void AddScore(int _case, int _score)
 	rename(FileName_2, FileName_1);
 }
 
-int MoveCharactor(int tx, int ty)
+int MoveCharacter(int tx, int ty)
 {
 	int flag[2];
 	flag[0] = CheckStatus(NowX + tx, NowY + ty);
@@ -151,7 +151,7 @@ int main()
 					AddScore(i, Record);
 					return 0;
 				}
-				if (MoveCharactor(tx, ty))continue;
+				if (MoveCharacter(tx, ty))continue;
 				system("cls");
 				PrintMaze(i);
 				if (GameFin())break;
