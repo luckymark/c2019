@@ -100,7 +100,8 @@ void saveFile()
 	fprintf(p, "%d\n", itemCnt);
 	for (int s = 0; s < list.size(); s++)
 	{
-		char ch[100] = {'\0'};
+		char ch[bufLim];
+		tmp.name = "";
 		for (int t = 0; t < list[s].name.length(); t++)
 			ch[t] = list[s].name[t];
 		fprintf(p, "%s %d\n", ch, list[s].number);
