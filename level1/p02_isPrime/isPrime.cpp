@@ -11,9 +11,14 @@ int main()
 	}
 	
 	if (i>=n)
-	printf("%d is Prime Number.", n);
+	{
+		printf("%d is Prime Number.", n);
+	 } 
+	
 	else
-	printf("%d is not Prime Number.", n);
+	{
+		printf("%d is not Prime Number.", n);
+	}
 	
 	return 0;
  } 
