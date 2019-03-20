@@ -8,7 +8,6 @@ int main(void)
 	for(int i=5;i<=1000;i++)
 	{
 		temp=sqrt(i);
-	
 		for(int j=2;j<=temp;j++)
 		{
 			if(i%j==0)break;	
@@ -16,6 +15,6 @@ int main(void)
 		}
 		
 	}
-printf("\n Time used = %.4f s\n",(double)clock()/CLOCKS_PER_SEC);
-return 0;
+	printf("\n Time used = %.4f s\n",(double)clock()/CLOCKS_PER_SEC);
+	return 0;
 }

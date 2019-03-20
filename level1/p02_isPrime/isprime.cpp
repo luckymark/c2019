@@ -10,10 +10,10 @@ int main(void)
 	{
 		if(x%i==0)
 		{
-		printf("%d is not a prime number",x);
-		return 0;
+			printf("%d is not a prime number",x);
+			return 0;
 		}	
 	}
-printf("%d is a prime number",x);
-return 0;	
+	printf("%d is a prime number",x);
+	return 0;	
 }

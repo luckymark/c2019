@@ -9,10 +9,10 @@ int main(void)
 	char str3[] =" ";
 	for(i=0;;i++)
 	{
-	j=i/width;	
-	k=i%width;
-	char str1[width] ="";
-	n=0;
+		j=i/width;	
+		k=i%width;
+		char str1[width] ="";
+		n=0;
 		if(j%2==0)//Õ˘”““∆∂Ø ± 
 		{
 			while(n<k)
@@ -29,10 +29,10 @@ int main(void)
 				--n;
 			}
 		}
-	strcat(str1,str2);
-	printf("%s",str1);
-	Sleep(100);	
-	system("cls");
+		strcat(str1,str2);
+		printf("%s",str1);
+		Sleep(100);	
+		system("cls");
 	}
 	return 0;
 }
