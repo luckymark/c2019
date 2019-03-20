@@ -45,7 +45,7 @@ int main()
 	while(1)
 	{
 		p = move();
-		if(p == 1 || p == -1)
+		if(p == 1)
 			return 0;
 	}	
 	return 0;
@@ -82,7 +82,7 @@ int move()
 		case 75:p = Left();break;
 		case 80:p = Down();break;
 		case 77:p = Right();break;
-		case 27:return -1;
+		case 27:return 1;
 		}
 		if(p == 1)
 		{
