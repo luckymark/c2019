@@ -1,5 +1,5 @@
 #include <stdio.h>
-void get_threeDigit_Number(const int targetnumber,int *digit_number)
+void getThreeDigitNumber(const int targetnumber,int *digit_number)
 {
     int i=targetnumber;
     int j=0;
@@ -23,7 +23,6 @@ int main()
         if(sum==i){
             printf("%d ",i);
         }
-        
     }
     return 0;
 }
