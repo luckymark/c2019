@@ -14,7 +14,7 @@ int main()
 		printf("%d is a prime number.",n);
 	else
 	{
-			for(i=2;i<=k;i++)
+		for(i=2;i<=k;i++)
 	{
 		if(n%i==0)
 		break;
