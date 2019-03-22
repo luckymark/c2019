@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1553259648 source:c:\users\admin\desktop\desk\c_and_c++\stack\rpn.c
+	<stdio.h>
+	<stdlib.h>
+
+1553259648 source:c:\users\admin\desktop\desk\c_and_c++\stack\cal.c
+
+1553257990 source:c:\users\admin\desktop\desk\c_and_c++\stack\ext.c
+	<string.h>
+
