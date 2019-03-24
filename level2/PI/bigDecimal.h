@@ -4,10 +4,10 @@
 #include <cmath>
 typedef long long LL;
 
-const int L = 720;
+const int L = 1360;
 const LL BASE = 100000000L;
-const int ITERATION_TIME = 13;
-int DIGIT_POS = L - 20;
+const int ITERATION_TIME = 14;
+int DIGIT_POS = L - 10;
 
 class BigDecimal
 {
@@ -22,9 +22,8 @@ public:
 	BigDecimal operator - (const BigDecimal);
 	BigDecimal operator * (const BigDecimal);
 	BigDecimal operator / (const BigDecimal);
-	BigDecimal DIV(const BigDecimal);
+	BigDecimal operator << (const int);
 	BigDecimal div2();
-	BigDecimal mul2();
 	BigDecimal sqrt();
 	void tid();
 	void correctSize();

@@ -23,7 +23,7 @@ BigDecimal::BigDecimal(LL number, int scale)
 
 void BigDecimal::tid()
 {
-	for (int s = 0; s < size; s++)
+	for (register int s = 0; s < size; s++)
 	{
 		LL k = num[s], move = 0;
 		while (k)
@@ -88,8 +88,7 @@ void BigDecimal::printDecimal()
 
 BigDecimal BigDecimal::operator = (const BigDecimal number)
 {
-	memset(num, 0, sizeof num);
-	for (int s = L - 1; s >= 0; s--)
+	for (register int s = L - 1; s >= 0; s--)
 	{
 		num[s] = number.num[s];
 	}
@@ -113,7 +112,7 @@ bool BigDecimal::operator > (const BigDecimal &number) const
 {
 	if (size != number.size)
 		return size > number.size;
-	for (int s = size - 1; s >= 0; s--)
+	for (register int s = size - 1; s >= 0; s--)
 	{
 		if (num[s] > number.num[s])
 			return 1;
@@ -127,7 +126,7 @@ bool BigDecimal::operator < (const BigDecimal &number) const
 {
 	if (size != number.size)
 		return size < number.size;
-	for (int s = size - 1; s >= 0; s--)
+	for (register int s = size - 1; s >= 0; s--)
 	{
 		if (num[s] < number.num[s])
 			return 1;
@@ -146,7 +145,7 @@ BigDecimal BigDecimal::operator + (const BigDecimal number)
 {
 	BigDecimal tmp = *this;
 	tmp.size = std::max(tmp.size, number.size);
-	for (int s = 0; s < tmp.size; s++)
+	for (register int s = 0; s < tmp.size; s++)
 	{
 		tmp.num[s] += number.num[s];
 	}
@@ -159,12 +158,12 @@ BigDecimal BigDecimal::operator - (const BigDecimal number)
 {
 	BigDecimal tmp = *this;
 	tmp.size = std::max(tmp.size, number.size);
-	for (int s = 0; s < tmp.size; s++)
+	for (register int s = 0; s < tmp.size; s++)
 	{
 		tmp.num[s] -= number.num[s];
 	}
 	tmp.tid();
-	for (int s = 0; s < tmp.size; s++)
+	for (register int s = 0; s < tmp.size; s++)
 	{
 		if (tmp.num[s] < 0)
 		{
@@ -179,9 +178,9 @@ BigDecimal BigDecimal::operator - (const BigDecimal number)
 BigDecimal BigDecimal::operator * (const BigDecimal number)
 {
 	BigDecimal tmp(0, 0);
-	for (int s = 0; s < size; s++)
+	for (register int s = 0; s < size; s++)
 	{
-		for (int t = 0; t < number.size; t++)
+		for (register int t = 0; t < number.size; t++)
 		{
 			if (s + t - DIGIT_POS >= 0)
 			{
@@ -199,7 +198,7 @@ BigDecimal BigDecimal::div2()
 {
 	BigDecimal ret(0, 0);
 	LL remain = 0;
-	for (int s = size - 1; s >= 0; s--)
+	for (register int s = size - 1; s >= 0; s--)
 	{
 		LL k = num[s] + remain*BASE;
 		ret.num[s] = k >> 1;
@@ -210,12 +209,12 @@ BigDecimal BigDecimal::div2()
 	return ret;
 }
 
-BigDecimal BigDecimal::mul2()
+BigDecimal BigDecimal::operator << (const int shift)
 {
 	BigDecimal ret = (*this);
-	for (int s = 0; s < size; s++)
+	for (register int s = 0; s < ret.size; s++)
 	{
-		ret.num[s] <<= 1;
+		ret.num[s] <<= shift;
 	}
 	ret.size = size + 2;
 	ret.tid();
@@ -226,7 +225,7 @@ BigDecimal BigDecimal::mul2()
 BigDecimal BigDecimal::operator / (const BigDecimal number)
 {
 	BigDecimal l(0, 0);
-	BigDecimal r(1, L - DIGIT_POS - 2);
+	BigDecimal r(1, L - DIGIT_POS - 1);
 	BigDecimal m(1, 0);
 	while (m * number > N1)
 	{
@@ -249,15 +248,4 @@ BigDecimal BigDecimal::sqrt()
 	for (int s = 0; s < ITERATION_TIME; s++)
 		k = (k + (*this/k)).div2();
 	return k;
-}
-
-void calcPI(BigDecimal a, BigDecimal b, BigDecimal t, BigDecimal p, int cur, int time)
-{
-	printf("Loop %d\n", cur);
-	if (cur == time)
-	{
-		(((a+b).div2()*(a+b).div2())/t).printDecimal();
-		return;
-	}
-	calcPI((a+b).div2(), a.sqrt()*b.sqrt(), t-(p*(a-b)*(a-b).div2()).div2(), p.mul2(), cur+1, time);
 }
