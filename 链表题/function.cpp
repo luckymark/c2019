@@ -5,7 +5,7 @@ node* createlinklist_1()
 {
 	node *p,*ptr;
 	p = new node;
-	p->value = 0; //头节点
+	p->value = 0; //脥路陆脷碌茫
 	ptr = p;
 	int a;
 	while (cin >> a)
@@ -19,7 +19,7 @@ node* createlinklist_1()
 	return p;
 }
 
-void search5(node *p)     //查找功能
+void search5(node *p)     //虏茅脮脪鹿娄脛脺
 {
 	int a = 0;
 	for (node *i=p ; i != NULL; i = i->p,a++)
@@ -33,7 +33,7 @@ void search5(node *p)     //查找功能
 
 void fanxu(node *p)
 {
-	node*x = p->p;
+	node*x = p;
 	for (node *i = p->p; i != NULL; i = i->p)
 	{
 		A.push(i);
