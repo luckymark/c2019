@@ -9,7 +9,9 @@ int main()
         uni=(med-(hun*100)-dec*10);
         nar=hun*hun*hun+dec*dec*dec+uni*uni*uni;
         if (nar==med)
-        printf("%d ",nar);
+        {
+			printf("%d ",nar);
+		}
     }
     printf("\n");
 } 
