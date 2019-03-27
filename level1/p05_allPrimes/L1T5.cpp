@@ -32,7 +32,9 @@ int main()
     CreatePrime(IsPrime, 1000);
     for(i = 2; i < 1000; i++)
       if(IsPrime[i]) 
-	  printf("%d\t",i);
+	  {
+	  	printf("%d\t",i);
+	  }
 	QueryPerformanceCounter(&time_over);	
 	run_time=1000000*(time_over.QuadPart-time_start.QuadPart)/dqFreq;
 	printf("\nrun_time£º%fus\n",run_time);
