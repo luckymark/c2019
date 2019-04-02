@@ -1,5 +1,9 @@
 # c2019
 
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![996ICU Licence](<https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg>)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+
 ## 基本操作流程
 
 1. 从 [https://github.com/luckymark/c2019](https://github.com/luckymark/c2019) fork 到你自己的 github 中
