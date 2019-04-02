@@ -1,6 +1,23 @@
 #include <iostream>
 #include <string>
 using namespace std;
+int encrypt();
+int decrypt();
+void leave();
+int main() {
+  cout << "请选择操作\n1)    加密\n2)    解密\n其他) 退出" << endl;
+  char item = getchar();
+  switch (item) {
+    case '1':
+      if (encrypt()) cout << "程序出错" << endl;
+      main();
+    case '2':
+      if (decrypt()) cout << "程序出错" << endl;
+      main();
+    default:
+      leave();
+  }
+}
 int encrypt() {
   cout << "请输入要加密的内容" << endl;
   string origin;
@@ -32,17 +49,4 @@ void leave() {
   cout << "非法指令，退出。。。" << endl;
   exit(0);
 }
-int main() {
-  cout << "请选择操作\n1)    加密\n2)    解密\n其他) 退出" << endl;
-  char item = getchar();
-  switch (item) {
-    case '1':
-      if (encrypt()) cout << "程序出错" << endl;
-      main();
-    case '2':
-      if (decrypt()) cout << "程序出错" << endl;
-      main();
-    default:
-      leave();
-  }
-}
+
