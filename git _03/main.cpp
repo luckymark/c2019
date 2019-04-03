@@ -6,10 +6,16 @@
 //  Copyright © 2019 兼桑. All rights reserved.
 //
 
-#include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+#include <cstdio>
+#include<cstdlib>
+using namespace std;
+int main()
+{
+    float i;
+    for(i=10;i<=150;i++)
+    {
+        if(i/6+i/12+i/7+i/2+9==i)
+            printf("%f",i);
+    }
     return 0;
 }
