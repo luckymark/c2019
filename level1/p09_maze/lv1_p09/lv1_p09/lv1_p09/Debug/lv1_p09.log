@@ -1,0 +1,6 @@
+﻿  main.cpp
+  maze.cpp
+c:\编程试水\作业\迷宫\lv1_p09\maze.cpp(8): warning C4091: “extern ”: 没有声明变量时忽略“playerdir”的左侧
+  move.cpp
+  正在生成代码...
+  lv1_p09.vcxproj -> C:\编程试水\作业\迷宫\lv1_p09\Debug\lv1_p09.exe
