@@ -1,7 +1,7 @@
 #include<stdio.h>
 int main()
 {
-	for(int age=12;age<=200;++age)//²»ÄÜÔÙ¶àÁË°É 
+	for(int age=12;age<=200;++age)//ä¸èƒ½å†å¤šäº†
 	{
 		if(age%12==0&&age%7==0)
 		{
