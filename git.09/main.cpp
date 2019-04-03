@@ -10,12 +10,13 @@
 #include<cstdlib>
 char a[14][14]={0};
 void maze(){
-    for(int i=1;i<=13;++i)
+    int i=0,j=0;
+    for(i=1;i<=13;++i)
     {
         a[i][1]=1;
         a[i][13]=1;
     }
-    for(int j=1;j<=13;++j)
+    for(j=1;j<=13;++j)
     {
         a[1][j]=1;
         a[13][j]=1;
@@ -33,8 +34,8 @@ void maze(){
     a[12][6]=1;
     a[13][3]=3;
     a[2][12]=4;
-    for (int i=1; i<=13; ++i) {
-        for (int j=1; j<=13; ++j) {
+    for (i=1; i<=13; ++i) {
+        for (j=1; j<=13; ++j) {
             if(a[i][j]==1)
             {
                 if(j==13)
@@ -44,15 +45,16 @@ void maze(){
             else if (a[i][j]==0) printf("□ ");
             else if(a[i][j]==3) printf("△");
             else printf("※ ");
+            if(a[i][j]==9) printf("△");
         }
     }
+    
 }
 void move(char act){
     int i=13,j=3;
-    while(act!='0')
+    while(scanf("%c",&act)==1)
     {
         a[i][j]=9;
-        scanf("%c",&act);
         if(act=='w') a[i-1][j]=9;
         else if (act=='s') a[i+1][j]=9;
         else if (act=='a') a[i][j-1]=9;
@@ -60,7 +62,7 @@ void move(char act){
         a[i][j]=0;
         system("clear");
         maze();
-        if(a[i][j]==9) printf("△");
+        
         
     }
 }
