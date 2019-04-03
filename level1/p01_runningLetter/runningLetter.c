@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<windows.h>
-#define length 117
+#define LENGTH 117
 int main()
 {
 	int flag=0,a=0;
