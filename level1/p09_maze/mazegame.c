@@ -23,8 +23,8 @@ void game()
 		c=get_in();
 		if(c==ESC) //Ω· ¯”Œœ∑ 
 		{
-		gotoxy(0,M);	
-		break;
+			gotoxy(0,M);	
+			break;
 		}
 		switch(c)
 		{
