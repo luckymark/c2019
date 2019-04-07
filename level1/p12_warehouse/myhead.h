@@ -1,5 +1,6 @@
 #include<iostream>
-#include<string>
+#include<cstring>
+#include<fstream>
 using namespace std;
 struct goods
 {
@@ -7,10 +8,10 @@ struct goods
 	string name;
 	int num;
 };
-extern goods good[100];
-void print();
+extern goods good[1000];
+void my_print(int);
 int scan();
 void in();
 int create(int all);
 int my_remove(int all);
-void save();
+void save(int all);
