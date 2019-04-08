@@ -23,7 +23,9 @@ int main(void)
 		}
 	}
 	for (n = 4; n < 101; n = n + 2)
+	{
 		s *= a[n];
+	}
 	if (s == 1)
 		printf("Validated the correctness of the Goldbach conjecture in the 100 range.");
 	return 0;
