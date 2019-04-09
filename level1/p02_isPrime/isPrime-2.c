@@ -10,14 +10,15 @@ int main(int argc, char const *argv[])
         for (size_t t = 0; t < count; t++)
         {
             if (num[t] * num[t] > i)
+            {
+                num[count++] = i;
                 break;
+            }
             if (i % num[t] == 0)
-                goto Rem;
+            {
+                break;
+            }
         }
-        num[count] = i;
-        count += 1;
-    Rem:
-        continue;
     }
 
     for (;;)
