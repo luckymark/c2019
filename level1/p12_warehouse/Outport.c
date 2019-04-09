@@ -47,7 +47,6 @@ int Outport()
                         else
                         {
                             printf("¿â´æ²»×ã£¬½öÓà%d¼þ\n", good2.quantity);
-                            fflush(stdin);
                         }
                     }
                     else
