@@ -9,7 +9,9 @@ int main(void)
 	printf("Please enter the number of discs.\n");
 	scanf("%d", &n);
 	for (int i = 1; i < n; ++i)
+	{
 		s *= 2;
+	}
 	printf("Need to move %d times,the steps are as follows:\n", s - 1);
 	hanoi(n, 'A', 'B', 'C');
 	return 0;

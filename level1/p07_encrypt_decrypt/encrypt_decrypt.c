@@ -14,7 +14,10 @@ int main(void)
 void crypt()
 {
 	int num = 0;
-	while ((str[num] = getchar()) != '\n')++num;
+	while ((str[num] = getchar()) != '\n')
+	{
+		++num;
+	}
 	for (int i = 0; i < num; ++i)
 	{
 		str[i] = 256 - str[i];

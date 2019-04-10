@@ -15,7 +15,9 @@ int main()
 				s++;
 		}
 		if (s == 0)
+		{
 			printf("%d ", n);
+		}
 	}
 	e = clock();
 	printf("\nTIME:%lfs", (e - b) / CLOCKS_PER_SEC);
