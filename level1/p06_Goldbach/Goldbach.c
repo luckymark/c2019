@@ -9,8 +9,8 @@ int main()
 	{
        for(j=2*i;j<=100;j=j+i)p[j]=0;
 	}
-    for(i=2;i<=100;i++)
-       if(i%2==0)
+	for(i=2;i<=100;i++)
+	if(i%2==0)
 	   {
 				  for(j=2;j<=50;j++)
 				  if(p[j]&&i-j>1&&p[i-j])
