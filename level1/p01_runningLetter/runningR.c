@@ -7,13 +7,13 @@ int main()
 	{
 		for(i=0;i<WIDTH;i++)
 		{
-		for(j=0;j<=i;j++)printf(" ");
+		    for(j=0;j<=i;j++)printf(" ");
 			printf("R");
 			system("cls");
 	 	}
 	 	for(i=WIDTH-1;i>=0;i--)
 		{
-	 	for(j=i-1;j>=0;j--)printf(" ");
+	 	    for(j=i-1;j>=0;j--)printf(" ");
 			printf("R");
 			system("cls");
 		}
