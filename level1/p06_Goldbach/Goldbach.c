@@ -13,7 +13,8 @@ int main()
        if(i%2==0)
 	   {
 				  for(j=2;j<=50;j++)
-				  if(p[j]&&i-j>1&&p[i-j]){
+				  if(p[j]&&i-j>1&&p[i-j])
+				  {
 				  	 ans1=j;
 				     ans2=i-j;
 					 printf("%d=%d+%d\n",i,j,i-j);
