@@ -136,9 +136,9 @@ struct Linked_listStruct {
 		length = 0;
 	}
 
-	Linked_listStruct inverse()
+	int inverse()
 	{
-		int valueArray[maxLength];
+		/*int valueArray[maxLength];
 		nodeStruct * cur = head;
 		int arrayLength = 0;
 		while (cur != NULL)
@@ -151,8 +151,22 @@ struct Linked_listStruct {
 		for (int i = 1; i <= arrayLength; i++)
 		{
 			inveseLinkedList.push_back(valueArray[length - i]);
+		}*/
+
+		nodeStruct *cur = head->next, *next, *last = head;
+		while (last != end)
+		{
+			next = cur->next;
+			cur->next = last;
+			last = cur;
+			cur = next;
 		}
-		return inveseLinkedList;
+
+		end = head;
+		end->next = NULL;
+		head = last;
+
+		return 0;
 	}
 };
 
