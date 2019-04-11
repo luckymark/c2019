@@ -10,7 +10,8 @@ int main()
 	cout << list << endl;
 
 	cout << "The inversed list is: ";
-	cout << list.inverse() << endl << endl;
+	list.inverse();
+	cout << list << endl << endl;
 
 	cout << "Find the first 5: " << list.findValue(5) << endl;
 	cout << "Find the third 5: " << list.findValue(5, 3);
