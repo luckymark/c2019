@@ -17,7 +17,12 @@ int main()
 	p=test[0];
 	printf("%d\n%d\n%d\n",*p,*(p+1),*(p+4));
 	printf("%d\n%d\n%d\n",**test,*(*test+1),*(*(test+1)));
+	printf("%d\n%d\n%d\n",(*test)[0],*(test[0]+1),*(test[1]));
+	printf("%d %d\n",sizeof(p),sizeof(*p));
 	memsetint(a,0,sizeof(a));
+	for(j=0;j<10000;++j)
+		if(a[j]!=0)
+			printf("wrong\n");
 	p=mallocint();
 	*p=100;
 	freeint(p);
@@ -40,7 +45,7 @@ void freeint(int *p)
 }
 void memsetint(int *p,int n,int size)
 {
-	int *tmp=p+size/sizeof(int);
+	void *tmp=p+size/sizeof(*p);
 	while(p<tmp)
 	{
 		*p=n;
