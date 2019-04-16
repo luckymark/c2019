@@ -26,7 +26,14 @@ int main()
 		{
 			for(;j<11;++j)
 			{
-				printf("%d",maze[i][j]);
+				if(maze[i][j]==0)
+					printf(" ");
+				if(maze[i][j]==1)
+					printf("#");
+				if(maze[i][j]==2)
+					printf("C");
+				if(maze[i][j]==8)
+					printf("Y");
 			}
 				if(j==11)
 				{
