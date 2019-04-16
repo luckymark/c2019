@@ -16,14 +16,14 @@ int main()
 		system("cls");
 		
 		if(a==0)
-		flag=0;
+			flag=0;
 		if(a==length)
-		flag=1;
+			flag=1;
 		
 		if(flag)
-		--a;
+			--a;
 		else
-		++a;
+			++a;
 	}
 	
 	return 0;
