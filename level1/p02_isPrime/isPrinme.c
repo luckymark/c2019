@@ -24,7 +24,7 @@ int main()
 			}
 		}
 		if(flag)
-		printf("%d是素数\n",n); 
+			printf("%d是素数\n",n); 
 	}
 	
 	return 0;
