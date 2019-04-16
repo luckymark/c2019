@@ -12,7 +12,7 @@ int main()
 		for(int i=0;i<max;++i)
 		all+=(int)pow((int)(x/pow(10,i))%10,max);
 		if(x==all)
-		printf("%d	",x);
+			printf("%d	",x);
 		all=0;
 	}
 	
