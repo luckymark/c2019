@@ -32,16 +32,20 @@ int main()
 	printf("节点已反序；\n正在查找值为5的节点序号：\n");
 	//遍历并查找数值；
 	pn = node4;
-	for (int i = 1; i < 6; i++)
+	for (int i = 1; ; i++)
 	{
-		if (i == 6)
+		if (pn->data == 5)
+		{
+			printf("%d\n", i);
+			if (pn->next == NULL)
+			{
+				break;
+			}
+		}
+		else if (pn->next == NULL)
 		{
 			printf("-1\n");
 			break;
-		}
-		if (pn->data == 5)
-		{
-			printf("该节点序号为：%d\n", i);
 		}
 		pn = pn->next;
 	}
