@@ -17,7 +17,7 @@ int main()
             ans2=i-j;
             printf("%d=%d+%d\n",i,j,i-j);
             break;
-		}
+        }
     }
     return 0;
 }
