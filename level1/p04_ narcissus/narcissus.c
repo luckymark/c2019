@@ -2,8 +2,6 @@
 #include<math.h>
 #define max 3
 
-int pick(int x);
-
 int main()
 {
 	int all=0;
