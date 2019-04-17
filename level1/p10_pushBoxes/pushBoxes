@@ -1,0 +1,281 @@
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+#include<windows.h>
+#define LENGTH 8
+#define LEVEL 3
+
+void Map();
+void print();
+void menu();
+void place();
+int move();
+void Up();
+void Down();
+void Right();
+void Left();
+int judge();
+void record(); 
+
+int level = 0;
+int x,y,step[LEVEL]={0};
+int map[LEVEL][LENGTH][LENGTH]; 
+
+int main()
+{
+	int flag = 0;
+	menu();
+	while(1)
+	{
+		flag = move();
+		if(flag == 1 || flag == -1)
+			break;
+	}
+	record();
+	return 0;
+}
+
+void Map()
+{
+	int i,j,k;
+	FILE *fp=fopen("D:\\Try.txt","r");
+	for(k=0;k<LEVEL;k++)
+	{
+		for(i=0;i< LENGTH;i++)
+		{
+			for(j=0;j< LENGTH;j++)
+			{
+				fscanf(fp,"%d",&map[k][i][j]);
+			}
+		}
+	}
+	fclose(fp);
+}
+
+void menu()
+{
+	char select[10];
+	printf("分操作提示：上 下 左 右 控制人物移动，按Esc退出游戏\n");
+	printf("请输入游戏难度(1、2、3):");
+	while(1)
+	{
+		scanf("%s",select);
+		if(strlen(select)>1)
+		{
+			printf("错误输入，请重新输入：");
+		}
+		else
+		{
+			if('1' == select[0])
+			{
+				level = 0;
+				break;
+			}
+			else if('2' == select[0])
+			{
+				level = 1;
+				break;
+			}
+			else if('3' == select[0])
+			{
+				level = 2;
+				break;
+			}
+			else
+			{
+				printf("错误输入，请重新输入：");
+			}
+		}
+	}
+	printf("%d\n",level);
+}
+
+int move()
+{
+	int flag = 0;
+	Map();
+	while(1)
+	{
+		place();
+		print();
+		switch(getch())
+		{
+		case 72:Up();break;
+		case 75:Left();break;
+		case 80:Down();break;
+		case 77:Right();break;
+		case 27:return -1;
+		}
+		flag=judge();
+		if(flag == 1)
+		{
+			if(level == LEVEL-1)
+			{
+				MessageBox(0,TEXT("恭喜你完成了所有关卡，圣诞节快乐"),TEXT("恭喜"),NULL);
+				return 1;
+			}
+			else
+			{
+				MessageBox(0,TEXT("恭喜你通过了这一关"),TEXT("恭喜"),NULL);
+				level ++;
+			}
+		}
+	}
+}
+
+void place()
+{
+	
+	int i= 0,j = 0;
+	for(i = 0;i < LENGTH;i++)
+	{
+		for(j = 0;j < LENGTH;j++)
+		{
+			if(map[level][i][j] == 5||map[level][i][j] == 8)
+			{
+				x = i;
+				y = j;
+				break;
+			}
+		}
+	}
+}
+
+void print()
+{
+	int i= 0,j = 0;
+	system("cls");
+	printf("Number of steps are:%d\n",step[level]);
+	for(i = 0;i < LENGTH;i++)
+	{
+		for(j = 0;j < LENGTH;j++)
+		{
+			if(map[level][i][j] == 1)
+				printf("■");
+			else if(map[level][i][j] == 0)
+				printf("  ");
+			else if(map[level][i][j] == 3)
+				printf("☆");
+			else if(map[level][i][j] == 4)
+				printf("□"); 
+			else if(map[level][i][j] == 5)
+				printf("♀");
+			else if(map[level][i][j] == 7)
+				printf("★");
+			else if(map[level][i][j] == 8)
+				printf("♀");
+				
+		}
+		printf("\n");
+	}
+}
+
+void Up()
+{
+	if(map[level][x-1][y]== 0||map[level][x-1][y]== 3)
+	{
+		map[level][x-1][y] += 5;
+		map[level][x][y] -= 5;
+		step[level]++;
+	}
+	else if(map[level][x-1][y]== 4||map[level][x-1][y]== 7)
+	{
+		if(map[level][x-2][y]== 0||map[level][x-2][y]== 3)
+		{
+			map[level][x-2][y] += 4;
+			map[level][x-1][y] += 1;
+			map[level][x][y] -= 5;
+			step[level]++;
+		}
+	}
+}
+
+void Down()
+{
+	if(map[level][x+1][y]== 0||map[level][x+1][y]== 3)
+	{
+		map[level][x+1][y] += 5;
+		map[level][x][y] -= 5;
+		step[level]++;
+	}
+	else if(map[level][x+1][y]== 4||map[level][x+1][y]== 7)
+	{
+		if(map[level][x+2][y]== 0||map[level][x+2][y]== 3)
+		{
+			map[level][x+2][y] += 4;
+			map[level][x+1][y] += 1;
+			map[level][x][y] -= 5;
+			step[level]++;
+		}
+	}
+}
+
+void Right()
+{
+	if(map[level][x][y+1]== 0||map[level][x][y+1]== 3)
+	{
+		map[level][x][y+1] += 5;
+		map[level][x][y] -= 5;
+		step[level]++;
+	}
+	else if(map[level][x][y+1]== 4||map[level][x][y+1]== 7)
+	{
+		if(map[level][x][y+2]== 0||map[level][x][y+2]== 3)
+		{
+			map[level][x][y+2] += 4;
+			map[level][x][y+1] += 1;
+			map[level][x][y] -= 5;
+			step[level]++;
+		}
+	}
+}
+
+void Left()
+{
+	if(map[level][x][y-1]== 0||map[level][x][y-1]== 3)
+	{
+		map[level][x][y-1] += 5;
+		map[level][x][y] -= 5;
+		step[level]++;
+	}
+	else if(map[level][x][y-1]== 4||map[level][x][y-1]== 7)
+	{
+		if(map[level][x][y-2]== 0||map[level][x][y-2]== 3)
+		{
+			map[level][x][y-2] += 4;
+			map[level][x][y-1] += 1;
+			map[level][x][y] -= 5;
+			step[level]++;
+		}
+	}
+}
+
+int judge()
+{	
+	int k=0;
+	int i= 0,j = 0;
+	for(i = 0;i < LENGTH;i++)
+	{
+		for(j = 0;j < LENGTH;j++)
+		{
+			if(map[level][i][j] != 4)
+			{
+				k++;
+			}
+		}
+	}
+	if(k==LENGTH*LENGTH){return 1;}
+	else return 0;
+}
+
+void record()
+{
+	FILE *fp = fopen("D:\\score.txt","w+");
+	if (fp!=NULL)
+	{
+		for(int i =0;i<LEVEL;i++)
+		{
+			fprintf(fp, "你的第%d关得分是：%d\n", i+1,step[i]);
+		}
+	}
+}
