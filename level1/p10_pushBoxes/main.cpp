@@ -12,6 +12,37 @@ using std::vector;
 
 int step = 0;
 
+void makeMove(int id, int mv)
+{
+	if (~id)
+	{
+		if (!box[id].canMove(mv)) return;
+		if (getBoxID(box[id].x + DX[mv], box[id].y + DY[mv]) != -1) return;
+		if (G[box[id].x][box[id].y] == TARGET)
+		{
+			print(box[id].x, box[id].y, TARGET);
+			boxFilled--;
+		}
+		print(box[id].x, box[id].y, PLAYER);
+		box[id].move(mv);
+		if (G[box[id].x][box[id].y] == TARGET) boxFilled++;
+		print(box[id].x, box[id].y, BOX);
+		print(player.x, player.y, ROAD);
+		player.move(mv);
+		print(player.x, player.y, PLAYER);
+		step++;
+	}
+	else
+	{
+		if (!player.canMove(mv)) return;
+		char tmp = G[player.x][player.y] != TARGET ? ROAD : TARGET;
+		print(player.x, player.y, tmp);
+		player.move(mv);
+		print(player.x, player.y, PLAYER);
+		step++;
+	}
+}
+
 int runGame()
 {
 	loadMap();
@@ -24,52 +55,19 @@ int runGame()
 		if (kbhit())
 		{
 			int mv = transKeyval(getch());
-			int boxID = getBoxID(player.x + DX[mv], player.y + DY[mv]);
-			if (~boxID)
-			{
-				if (box[boxID].canMove(mv) && getBoxID(box[boxID].x + DX[mv], box[boxID].y + DY[mv]) == -1)
-				{
-					if (G[box[boxID].x][box[boxID].y] == TARGET)
-					{
-						print(box[boxID].x, box[boxID].y, TARGET);
-						boxFilled--;
-					}
-					print(box[boxID].x, box[boxID].y, PLAYER);
-					box[boxID].move(mv);
-					if (G[box[boxID].x][box[boxID].y] == TARGET) boxFilled++;
-					print(box[boxID].x, box[boxID].y, BOX);
-					print(player.x, player.y, ROAD);
-					player.move(mv);
-					print(player.x, player.y, PLAYER);
-					step++;
-				}
-			}
-			else
-			{
-				if (player.canMove(mv))
-				{
-					char tmp;
-					if (G[player.x][player.y] != TARGET) tmp = ROAD;
-					else tmp = TARGET;
-					print(player.x, player.y, tmp);
-					player.move(mv);
-					print(player.x, player.y, PLAYER);
-					step++;
-				}
-			}
+			int id = getBoxID(player.x + DX[mv], player.y + DY[mv]);
+			makeMove(id, mv);
 		}
 	}
-	printSquare(0, 0, W-1, H-1, ' ');
-	char str[] = "You win!!";
-	printString(0, 0, str);
-	printf("\nTotal steps: %d\n", step);
+	//printSquare(0, 0, W-1, H-1, ' ');
+	moveCursor(0, 11);
+	printf("µÅ¡üµÅ¨JµÅ¡úµÅ¨KµÅ¡ýµÅ¡úµÅ¨JµÅ¡ü\n");
+	printf("Total steps: %d\n", step);
 	FILE *p = fopen("score/score.txt", "w+");
 	fprintf(p, "%d", step);
 }
 
 int main()
 {
-	system("mode con: cols=84 lines=34");
-	system("title PushBoxes");
 	runGame();
 }
