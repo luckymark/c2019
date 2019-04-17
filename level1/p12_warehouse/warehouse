@@ -1,0 +1,137 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h> 
+
+void menu();
+void open();
+void display();
+void in_warehouse();
+void out_warehouse();
+void close(); 
+
+int m;
+
+struct warehouse{
+	char id[10];
+	int data[10];
+	int num;
+};
+struct warehouse goods[1000];
+
+
+int main()
+{
+	int i;
+	open();
+	menu();
+	printf("请输入你选择操作的序号：");
+	while(scanf("%d",&i)){
+		switch(i){
+			case 1:
+				display();
+				break;
+			case 2:
+				in_warehouse();
+				void close();
+				break;
+			case 3:
+				out_warehouse();
+				void close();
+				break;
+		case 4:
+				exit(0);
+	 	} 
+	}
+
+	return 0;
+}
+
+void menu()
+{
+        printf("***************************************\n");
+        printf("*           库存信息管理系统          *\n");
+        printf("*              1.显示存货列表         *\n");
+        printf("*              2.入库                 *\n");
+        printf("*              3.出库                 *\n");
+        printf("*              4.退出程序             *\n");
+        printf("***************************************\n");
+}
+
+void open()
+{
+	int i=0;
+	FILE *fp=fopen("D:\\goods.txt","r");
+	while(fscanf(fp,"%s%s%d",&goods[i].id,&goods[i].data,&goods[i].num)!=EOF){
+		i++;
+	}
+	fclose(fp);
+	m=i;
+	
+}
+
+void display()
+{
+	printf("商品号 生产日期  商品数量\n");
+	for(int i=0;i<m;i++){
+		printf("%s      %s     %d\n",goods[i].id,goods[i].data,goods[i].num);
+	}
+}
+
+void in_warehouse()
+{
+	char id[10];
+	int num;
+	printf("请输入要进库的商品号:");
+	scanf("%s", &id);
+	if(1){
+		for(int i=0;i<m;i++){
+			if(strcmp(id,goods[i].id)==0){
+			printf("仓库中存在该商品，请输入入库数量：");
+			scanf("%d",&num);
+			goods[i].num=goods[i].num+num;
+			printf("入库成功"); 
+			return;
+			}
+		}
+	}
+	printf("仓库中不存在该商品，请输入商品id,生产日期，数量：");
+	scanf("%s %s %d",&goods[m].id,&goods[m].data,&goods[m].num);
+	printf("入库成功");
+	m=m+1;
+	}
+
+void out_warehouse()
+{
+	char id[10];
+	int num;
+	printf("请输入要出库的商品号：");
+	scanf("%s",&id);
+	if(1){
+		for(int i=0;i<m;i++){
+			if(strcmp(id,goods[i].id)==0){
+				printf("仓库中存在该商品，请输入出库数量：");
+				scanf("%d",&num);
+				if(goods[i].num>=num){
+					goods[i].num=goods[i].num-num;
+					printf("出库成功");
+					return; 
+				}
+				else{
+					printf("商品数量不足");
+					return;
+				}
+			}
+		}
+	}
+	printf("仓库中不存在该商品");
+}
+
+void close()
+{
+	FILE *fp=fopen("D:\\goods.txt","w");
+	for(int i=0;i<m;i++){
+		fprintf(fp,"%s %s %d\n",goods[i].id,goods[i].data,goods[i].num);
+	}
+	fclose(fp);
+ } 
+ 
