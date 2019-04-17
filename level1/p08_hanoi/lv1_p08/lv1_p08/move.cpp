@@ -1,25 +1,21 @@
 #include<stdio.h>
+#include"move.h"
 #include<iostream>
 using namespace std;
 
 int t = 0;
-void AtoB(int x);
-void BtoC(int x);
-void CtoB(int x);
-void BtoA(int x);
-void CtoA(int x);
 
 int AtoC(int x)
 {
 	if (x == 2)
 	{
-		cout << "A¡úB\nA¡úC\nB¡úC" << endl;
+		cout << "AÂ¡ÃºB\nAÂ¡ÃºC\nBÂ¡ÃºC" << endl;
 		t = t + 3;
 	}
 	else
 	{
 		AtoB(x - 1);
-		cout <<  "A¡úC" << endl;
+		cout <<  "AÂ¡ÃºC" << endl;
 		BtoC(x - 1);
 		t++;
 	}
@@ -30,13 +26,13 @@ void AtoB(int x)
 {
 	if (x == 2)
 	{
-		cout << "A¡úC\nA¡úB\nC¡úB" << endl;
+		cout << "AÂ¡ÃºC\nAÂ¡ÃºB\nCÂ¡ÃºB" << endl;
 		t = t + 3;
 	}
 	else
 	{
 		AtoC(x - 1);
-		cout << "A¡úB" << endl;
+		cout << "AÂ¡ÃºB" << endl;
 		CtoB(x - 1);
 		t++;
 	}
@@ -47,13 +43,13 @@ void BtoC(int x)
 {
 	if (x == 2)
 	{
-		cout << "B¡úA\nB¡úC\nA¡úC" << endl;
+		cout << "BÂ¡ÃºA\nBÂ¡ÃºC\nAÂ¡ÃºC" << endl;
 		t = t + 3;
 	}
 	else
 	{
 		BtoA(x - 1);
-		cout << "B¡úC" << endl;
+		cout << "BÂ¡ÃºC" << endl;
 		AtoC(x - 1);
 		t++;
 	}
@@ -64,13 +60,13 @@ void CtoB(int x)
 {
 	if (x == 2)
 	{
-		cout << "C¡úA\nC¡úB\nA¡úB" << endl;
+		cout << "CÂ¡ÃºA\nCÂ¡ÃºB\nAÂ¡ÃºB" << endl;
 		t = t + 3;
 	}
 	else
 	{
 		CtoA(x - 1);
-		cout <<  "C¡úB" <<endl;
+		cout <<  "CÂ¡ÃºB" <<endl;
 		AtoB(x - 1);
 		t++;
 	}
@@ -81,13 +77,13 @@ void BtoA(int x)
 {
 	if (x == 2)
 	{
-		cout << "B¡úC\nB¡úA\nC¡úA" << endl;
+		cout << "BÂ¡ÃºC\nBÂ¡ÃºA\nCÂ¡ÃºA" << endl;
 		t = t + 3;
 	}
 	else
 	{
 		BtoC(x - 1);
-		cout << "B¡úA" << endl;
+		cout << "BÂ¡ÃºA" << endl;
 		CtoA(x - 1);
 		t++;
 	}
@@ -98,13 +94,13 @@ void CtoA(int x)
 {
 	if (x == 2)
 	{
-		cout << "C¡úB\nC¡úA\nB¡úA" << endl;
+		cout << "CÂ¡ÃºB\nCÂ¡ÃºA\nBÂ¡ÃºA" << endl;
 		t = t + 3;
 	}
 	else
 	{
 		CtoB(x - 1);
-		cout << "C¡úA" << endl;
+		cout << "CÂ¡ÃºA" << endl;
 		BtoA(x - 1);
 		t++;
 	}
