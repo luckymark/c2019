@@ -9,7 +9,7 @@ int main()
 				break;
 		}
 	}
-	printf("%d",i);
+	printf("¶ù×ÓËÀÊ±¶ª·¬Í¼Îª£º%d\n",i);
 	system("pause");
 	return 0;
 }

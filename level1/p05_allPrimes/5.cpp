@@ -16,14 +16,6 @@ int main()
 		if(d*d>i)
 		printf("%d ,",i);
 	}
-/*	for(i=2;i<=1000;i++){
-		for(d=2;d<i;d++){
-			if(i%d==0)
-			break;
-		}
-		if(d==i)
-		printf("%d, ",i);
-	}*/
 	finish=clock();
 	printf("\n");
 	t=(double)(finish-start)/CLOCKS_PER_SEC;
