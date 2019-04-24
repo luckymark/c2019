@@ -1,3 +1,6 @@
+## 说明
+> Qt5仅用以图形化界面
+
 ## TODOLIST
 
 | Tasks          | Value | Estimated Time | Real Time | Finished? |
