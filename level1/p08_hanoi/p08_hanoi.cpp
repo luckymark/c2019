@@ -5,88 +5,28 @@ char A = 'A';
 char B = 'B';
 char C = 'C';
 
-void Hanio(char t, int n, char *p);
+void Hanio(int n, char A, char B, char C);
 
-void SetPosition(char t, int n, char *p);
 
 int main()
 {
 	int n;
 	scanf("%d", &n);
-	char *p = (char*)malloc(sizeof(char)*n);
-	for (int i = 0; i < n; i++)
-	{
-		p[i] = A;
-	}
-	Hanio(C, n, p);
+	Hanio(n, A, B, C);
 	system("pause");
 	return 0;
 }
 
-void Hanio(char t, int n, char *p)
+void Hanio(int n, char A, char B, char C)
 {
-	if (n > 1)
+	if (n == 1)
 	{
-		SetPosition(t, n, p);
+		printf("No.%d %c -> %c\n", n, A, C);
 	}
 	else
 	{
-		printf("No.%d %c -> %c\n", n, p[n - 1], t);
-		p[n - 1] = t;
-	}
-}
-
-void SetPosition(char t, int n, char *p)
-{
-	if (t == A)
-	{
-		if (p[n - 1] == B)
-		{
-			Hanio(C, n - 1, p);
-			printf("No.%d %c -> %c\n", n, p[n - 1], t);
-			p[n - 1] = t;			
-			Hanio(A, n - 1, p);
-		}
-		else
-		{
-			Hanio(B, n - 1, p);
-			printf("No.%d %c -> %c\n", n, p[n - 1], t);
-			p[n - 1] = t;
-			Hanio(A, n - 1, p);
-		}
-	}
-	else if (t == B)
-	{
-		if (p[n - 1] == A)
-		{
-			Hanio(C, n - 1, p);
-			printf("No.%d %c -> %c\n", n, p[n - 1], t);
-			p[n - 1] = t;
-			Hanio(B, n - 1, p);
-		}
-		else
-		{
-			Hanio(A, n - 1, p);
-			printf("No.%d %c -> %c\n", n, p[n - 1], t);
-			p[n - 1] = t;
-			Hanio(B, n - 1, p);
-		}
-	}
-	else if (t == C)
-	{
-		if (p[n - 1] == B)
-		{
-			Hanio(A, n - 1, p);
-			printf("No.%d %c -> %c\n", n, p[n - 1], t);
-			p[n - 1] = t;
-			Hanio(C, n - 1, p);
-		}
-		else
-		{
-			Hanio(B, n - 1, p);
-			printf("No.%d %c -> %c\n", n, p[n - 1], t);
-			p[n - 1] = t;
-			Hanio(C, n - 1, p);
-		}
+		Hanio(n - 1, A, C, B);
+		printf("No.%d %c -> %c\n", n, A, C);
+		Hanio(n - 1, B, A, C);
 	}
 }
