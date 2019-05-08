@@ -2,8 +2,8 @@
 #include <conio.h>
 #include <windows.h>
 #include <time.h>
-#define Height 55 //迷宫的高度，必须为奇数
-#define Width 31 //迷宫的宽度，必须为奇数
+#define Height 11 //迷宫的高度，必须为奇数
+#define Width 11 //迷宫的宽度，必须为奇数
 #define Wall 1
 #define Road 0
 #define Start 2
