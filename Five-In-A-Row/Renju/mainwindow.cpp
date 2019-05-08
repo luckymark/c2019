@@ -80,11 +80,11 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     //for (int s = 0; s < 8; s++)
     //    qDebug() << game->rate(x, y, s, 1) << game->rate(x, y, s, 0);
     //    qDebug() << game->status[x][y][s][1] << game->status[x][y][s][0];
-    qDebug() << endl;
+    //qDebug() << endl;
+    game->printScore();
     qDebug() << game->score[x][y][1] << game->score[x][y][0];
-    qDebug() << endl;
     if (game->getChess(x, y)) return;
-    if (game->curType == 1)
+    if (game->curType == 1 && gameRunning)
     {
         if (event->buttons() == Qt::LeftButton)
         {
@@ -104,19 +104,32 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
     if (isWin)
     {
         gameRunning = 0;
-        if (isWin == 1) QMessageBox::information(nullptr, "Title", "WHITE WINS!!!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-        else QMessageBox::information(nullptr, "Title", "RED WINS!!!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        if (isWin == 1)
+        {
+            QMessageBox::information(nullptr,
+                                     "Victory",
+                                     "WHITE WINS!!!",
+                                     QMessageBox::Yes,
+                                     QMessageBox::Yes);
+        }
+        else
+        {
+            QMessageBox::information(nullptr,
+                                     "Lose",
+                                     "RED WINS!!!",
+                                     QMessageBox::Yes,
+                                     QMessageBox::Yes);
+        }
     }
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
-    if (!gameRunning) return;
     Q_UNUSED(event);
     this->resize(QSize(W_WIDTH, W_HEIGHT));
     this->drawBoard();
 
-    if (game->curType == 0)
+    if (game->curType == 0 && gameRunning)
     {
         game->AIdecide();
     }

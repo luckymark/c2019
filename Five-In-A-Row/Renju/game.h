@@ -6,9 +6,8 @@ const int MG = 4;
 const int DX[8] = {1, 1, 0, -1, -1, -1, 0, 1};
 const int DY[8] = {0, 1, 1, 1, 0, -1, -1, -1};
 
-class Game
+struct Game
 {
-public:
     Game();
     int curType;
     int curX, curY;
@@ -22,6 +21,7 @@ public:
     void placeChess();
     int validateWin();
     void AIdecide();
+    void printScore(); // DEBUG
 };
 
 #endif // GAME_H

@@ -1,6 +1,6 @@
 #include <windows.h>
-#include <iostream>
 #include <cstring>
+#include <cstdio>
 #include <ctime>
 #include <QTimer>
 #include <QDebug>
@@ -106,14 +106,6 @@ void Game::validateAll()
             calcScore(i, j, 1);
         }
     }
-    /*for (int i = 0; i < BOARD_SIZE; i++)
-    {
-        for (int j = 0; i < BOARD_SIZE; j++)
-        {
-            qDebug() << score[i][j][1] << ", " << score[i][j][0];
-        }
-        qDebug() << endl;
-    }*/
 }
 
 void Game::placeChess()
@@ -193,4 +185,15 @@ void Game::AIdecide()
         }
     }
     placeChess();
+}
+
+void Game::printScore()
+{
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+            printf("%d ", score[i][j][1]);
+        printf("\n");
+    }
+    printf("\n");
 }
