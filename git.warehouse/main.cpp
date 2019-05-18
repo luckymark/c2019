@@ -10,6 +10,7 @@
 #include<cstdlib>
 using namespace std;
 int i;
+FILE *fp=fopen("text.txt","w+");
 typedef struct list{
     char name;
     int num;
@@ -25,7 +26,7 @@ void showlist(){
         head=head->next;
         return showlist();}
 }
-void addlist(char nam,int numb){
+void add(char nam,int numb){
     a=node->next;
     a->name=nam;
     a->num=numb;
@@ -34,7 +35,8 @@ void addlist(char nam,int numb){
 void input(){
     char nam;int numb;
     scanf("%c%d",&nam,&numb);
-    return addlist(nam,numb);
+    fprintf(fp, "%c%d",nam,numb);
+    return add(nam,numb);
 }
 void output(){
     char nam;int numb;
@@ -56,7 +58,7 @@ void output(){
 int main()
 {
     int c[100],j=0;char b[100];
-    FILE *fp=fopen("text.txt","w+");
+    
     if (fp == NULL)
     {
         printf("读取失败\n");
@@ -71,7 +73,7 @@ int main()
     int k=0;
     for(k=0;k<=j;++k)
     {
-        addlist( b[k], c[k]);
+        add( b[k], c[k]);
     }
     printf("choose the number:\n1.show the list\n2.input\n3.output\n4.quit");
     scanf("%d",&i);
