@@ -6,6 +6,10 @@ void cls()
 void init(char board[N][N][L])
 {
 	int i,j;
+	Blast.m=0;
+	Blast.n=0;
+	Wlast.m=0;
+	Wlast.n=0;
 	system("color f0");
 	for(i=0;i<N;++i)
 		for(j=0;j<N;++j)
@@ -64,10 +68,6 @@ void printboard(char board[N][N][L])
 		}
 	}
 }
-int winner(char board[N][N][L])
-{
-	return 0;
-}
 void PlayerPos(char board[N][N][L])
 {
 	int m=0,n=0;
@@ -88,10 +88,13 @@ void PlayerPos(char board[N][N][L])
 		{
 			m=inRec.Event.MouseEvent.dwMousePosition.Y-1;
 			n=inRec.Event.MouseEvent.dwMousePosition.X/2-1;
-			break;
+			if(board[m][n][1]!=BC&&board[m][n][1]!=WC)
+				break;
 		}
 	}
 	sprintf(board[m][n],"¡ñ");
+	Blast.m=m;
+	Blast.n=n;
 	//CloseHandle(hin);
 	//CloseHandle(hout);
 }

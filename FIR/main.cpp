@@ -1,4 +1,6 @@
 #include"head.h"
+struct LastPoint Blast,Wlast;
+
 int main()
 {
 	char board[N][N][L];
