@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 	{
 		a[i] = (char*)malloc(sizeof(char)*100);
 	}
-	step=-1;//一开始会把回车键算进去，所以从-1开始而不是从0开始 
-	printf("推箱子小游戏，w,s,a,d上下左右，按ESC可退出，你是“o”\n"); 
+	step=0;
+	point2:printf("推箱子小游戏，w,s,a,d上下左右，按ESC可退出，你是“o”\n"); 
 	printf("把箱子“B”移动到“D”上即可\n");
 	printf("按数字1，2选关:");
 	scanf("%d",&n);
@@ -22,10 +22,14 @@ int main(int argc, char *argv[])
 	{
 		fpRead=fopen("boxmap1.txt","r");
 	} 
-	else
-	{
-		fpRead=fopen("boxmap2.txt","r");
-	}
+    	else if(n==2) 
+		{
+			fpRead=fopen("boxmap2.txt","r");
+		}
+			else if(n==3)
+			{
+				fpRead=fopen("score.txt","r");
+			}
 	if(fpRead==NULL)
 	{
 		return 0;
@@ -50,21 +54,37 @@ int main(int argc, char *argv[])
 			system("cls"); 
 			printf("恭喜你推完了箱子！！\n");
 			printf("移动步数：%d\n",step);
+			FILE *fpWrite=fopen("score.txt","w");
+				if(fpWrite==NULL)
+				{  
+					return 0;
+				}
+					fprintf(fpWrite,"%d\n",step);
+				fclose(fpWrite);
 			break; 
 		} 
-		point:key=getch();nkey=(int)key;step++;
+			if((a[2][4]!='B')&&(a[2][4]!='o'))
+			   a[2][4]='D';
+			if((a[2][13]!='B')&&(a[2][13]!='o'))
+			   a[2][13]='D'; 
+			if((a[11][4]!='B')&&(a[11][4]!='o'))
+			   a[11][4]='D'; 
+			if((a[11][13]!='B')&&(a[11][13]!='o'))
+			   a[11][13]='D';
+		point:key=getch();nkey=(int)key;
+		
 		if(nkey==27)break;
 		switch(key)
 		{
 		   case 'w':
 		   	{
-   			    if(a[x-1][y]=='X')goto point;
+			    if(a[x-1][y]=='X')goto point;
 			    if((x>0)&&(a[x-1][y]!='X'))
 				{
                 	if(a[x-1][y]=='B')
     				{ 
        					if(a[x-2][y]=='X')goto point;
-			   			x--;
+			   			x--;step++;
 				   		a[x0][y0]=' ';
 				   		a[x][y]='o';
 				   		a[x-1][y]='B';
@@ -73,7 +93,7 @@ int main(int argc, char *argv[])
      				}
      				else
      				{
-				        	x--;
+				        	x--;step++;
 				   			a[x0][y0]=' ';
 				   			a[x][y]='o';
 				   			x0=x;y0=y;
@@ -83,13 +103,13 @@ int main(int argc, char *argv[])
    		    }
    		    case 'a':
 		   	{
-   			    if(a[x][y-1]=='X')goto point;
+				   if(a[x][y-1]=='X')goto point;
 				   if((y>0)&&(a[x][y-1]!='X'))
    			    {
    			    	if(a[x][y-1]=='B')
    			    	{
    			    		if(a[x][y-2]=='X')goto point;
-	    			   	y--;
+	    			   	y--;step++;
 			        	a[x0][y0]=' ';
 			        	a[x][y-1]='B';
 				   		a[x][y]='o';
@@ -97,7 +117,7 @@ int main(int argc, char *argv[])
     			    }
 					else
 					{
-						y--;
+						y--;step++;
 			        	a[x0][y0]=' ';
 				   		a[x][y]='o';
 				   		x0=x;y0=y;
@@ -113,7 +133,7 @@ int main(int argc, char *argv[])
    			    	if(a[x][y+1]=='B')
    			    	{
    			    		if(a[x][y+2]=='X')goto point;
-	    			   	y++;
+	    			   	y++;step++;
 				   		a[x0][y0]=' ';
 				   		a[x][y+1]='B';
 				   		a[x][y]='o';
@@ -121,7 +141,7 @@ int main(int argc, char *argv[])
     			    }
 			        else
 			        {
-        				y++;
+        				y++;step++;
 				   		a[x0][y0]=' ';
 				   		a[x][y]='o';
 				   		x0=x;y0=y;
@@ -131,13 +151,13 @@ int main(int argc, char *argv[])
    		    }
    		    case 's':
 		   	{
-   			    if(a[x+1][y]=='X')goto point;
+				   if(a[x+1][y]=='X')goto point;
 				   if(a[x+1][y]!='X')
 			    {
 			    	if(a[x+1][y]=='B')
 			    	{
 			    		if(a[x+2][y]=='X')goto point;
-	    				x++;
+	    				x++;step++;
 			    		a[x0][y0]=' ';
 			    		a[x+1][y]='B';
 				   		a[x][y]='o';
@@ -145,7 +165,7 @@ int main(int argc, char *argv[])
 	    			}
 					else
 					{
-						x++;
+						x++;step++;
 			    		a[x0][y0]=' ';
 				   		a[x][y]='o';
 				   		x0=x;y0=y;
