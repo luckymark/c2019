@@ -7,19 +7,7 @@
 #include<conio.h>
 #include<windows.h>
 #include<time.h>
-#define N 15
-#define L 4
-#define BLACK 1
-#define WHITE 2
-#define BC -15
-#define WC -16
-#define TITLE "Îå×ÓÆå"
-struct LastPoint
-{
-	int m;
-	int n;
-};
-
+#include"Constants.h"
 extern struct LastPoint Blast,Wlast;
 void cls();
 void init(char board[N][N][L]);

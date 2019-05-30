@@ -1,10 +1,5 @@
 #include"head.h"
-int Left_Right(char board[N][N][L],int state);
-int Up_Down(char board[N][N][L],int state);
-int Left_Up(char board[N][N][L],int state);
-int Left_Down(char board[N][N][L],int state);
-int JudgeBlack(char board[N][N][L]);
-int JudgeWhite(char board[N][N][L]);
+#include"FindWinner.h"
 
 int winner(char board[N][N][L])
 {

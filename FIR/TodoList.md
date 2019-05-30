@@ -1,18 +1,21 @@
-﻿# 这是一个五子棋程序的TodoList
+﻿# 五子棋TodoList
+
 ## 初始化棋盘 Done
+
 ## 画棋盘 Done
+
 ## 玩家通过鼠标下子 Done
+
 ## 判断输赢 Done
+
 ## AI下子
-- - 随机 Done
-- - Level 1
-- - - win INF
-- - - 活4 10000
-- - - 半活4 2000
-- - - 半活4*2
-- - - 半4+活3
-- - - 活3
-- - - 活3*2
-- - - 活2
-- - - ……
-- - Level 2:Min Max
+
+- - Level 0 AI随机下子 Done
+- - Level 01 贪心 Done
+- - - 评估函数
+- - - 选取评价最高的点作为落子点
+- - Level 1 极大极小值搜索
+- - - 加入对黑子行为的预判
+- - Level 2 Alpha-Beta 剪枝
+
+## 打印结局 Done

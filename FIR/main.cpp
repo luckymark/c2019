@@ -11,7 +11,10 @@ int main()
 		PlayerPos(board);
 		AIPos(board);
 		printboard(board);
+		gotomn(Wlast.m,Wlast.n);
+		printf("¡ò");
 	}
+	gotomn(N,-1);
 	if(winner(board)==BLACK)
 		printf("Black wins!\n");
 	if(winner(board)==WHITE)
