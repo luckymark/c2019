@@ -1,8 +1,11 @@
-### 功能要求：
+//
+//  main.cpp
+//  git.05
+//
+//  Created by 兼桑 on 2019/3/6.
+//  Copyright © 2019 兼桑. All rights reserved.
+//
 
-1. 打印2-1000以内的所有素数
-1. 打印出总的计算时间
-1. 尽可能优化算法的效率
 #include<cstdio>
 #include<cstdlib>
 #include<cmath>

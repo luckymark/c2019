@@ -1,10 +1,10 @@
-### 题目：奔跑的字母
-
-### 功能要求：
-
-1. 在console上输出一个字母（或单词）
-1. 使该字母或单词，按一定速度从左至右运动
-1. 当遇到屏幕边界时反向运动
+//
+//  main.cpp
+//  git.1
+//
+//  Created by 兼桑 on 2019/4/3.
+//  Copyright © 2019 兼桑. All rights reserved.
+//
 
 #include<cstdio>
 #include<cstdlib>
@@ -29,6 +29,7 @@ int main()
     }
     return 0;
 }
+
 
 
 

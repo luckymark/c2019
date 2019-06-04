@@ -1,10 +1,11 @@
-### 功能要求：
+//
+//  main.cpp
+//  git.04
+//
+//  Created by 兼桑 on 2019/3/6.
+//  Copyright © 2019 兼桑. All rights reserved.
+//
 
-1. 打印出所有3位水仙花数
-
-水仙花数：n位数的每个数位的n次方之和等于该n位数本身
-
-例如：153=1^3+5^3+3^3
 #include<cstdio>
 #include<cstdlib>
 #include<cmath>

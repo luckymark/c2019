@@ -1,7 +1,11 @@
-### 功能要求：
+//
+//  main.cpp
+//  lll
+//
+//  Created by 兼桑 on 2019/2/28.
+//  Copyright © 2019 兼桑. All rights reserved.
+//
 
-1. 任意输入一个正整数n
-1. 判断n是否为素数
 #include<cstdio>
 #include<cstdlib>
 #include <cmath>
