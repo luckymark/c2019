@@ -9,6 +9,7 @@ int main()
 	while(!winner(board))
 	{
 		PlayerPos(board);
+		printboard(board);
 		AIPos(board);
 		printboard(board);
 		gotomn(Wlast.m,Wlast.n);

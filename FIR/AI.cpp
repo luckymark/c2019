@@ -8,7 +8,7 @@ void Level_1_Max_Min(char board[N][N][L]);
 void Level_2_ABcut(char board[N][N][L]);
 int EmulateValue(char board[N][N][L],int side,int m,int n);		//根据最后落子估值				side:BLACK or WHITE
 int insight(int m,int n,char board[N][N][L]);				//判断是否在已下子的周围
-int EmulateValueForMaxMin(char board[N][N][L],int side,int m,int n,int depth);				//Now working on!!!!
+int EmulateValueForMaxMin(char board[N][N][L],int m,int n,int depth);				//depth表示递归搜索层数，必须为偶数
 
 void AIPos(char board[N][N][L])
 {
@@ -88,56 +88,29 @@ void Level_01_Greedy(char board[N][N][L])
 	Wlast.n=n;
 }
 
-void Level_1_Max_Min(char board[N][N][L])			//Now working on!!!!
+void Level_1_Max_Min(char board[N][N][L])
 {
-	int i1,j1,i2,j2,valmax=-1000000000,valmin=1000000000,m1,n1,m2,n2;
-	for(i1=0;i1<N;i1++)
+	int i,j,maxval=-1000000000,m,n;
+	for(i=0;i<N;i++)
 	{
-		for(j1=0;j1<N;j1++)
+		for(j=0;j<N;j++)
 		{
-			if(!notused(i1,j1,board))
+			if(!notused(i,j,board))
 				continue;
-			if(!insight(i1,j1,board))
+			if(!insight(i,j,board))
 				continue;
-			char tmpboard[N][N][L];
-			for(int i=0;i<N;i++)
+			int tmpval=EmulateValueForMaxMin(board,i,j,2);				//以普通计算机的算力只能搜索两层
+			if(tmpval>maxval)
 			{
-				for(int j=0;j<N;j++)
-				{
-					strcpy(tmpboard[i][j],board[i][j]);
-				}
-			}
-			sprintf(tmpboard[i1][j1],"○");
-			for(i2=0;i2<N;i2++)
-			{
-				for(j2=0;j2<N;j2++)
-				{
-					if(!notused(i2,j2,tmpboard))
-						continue;
-					if(!insight(i2,j2,tmpboard))
-						continue;
-					int tmpmin=EmulateValueForMaxMin(tmpboard,BLACK,i2,j2,1);
-					if(tmpmin<valmin)
-					{
-						valmin=tmpmin;
-						m2=i2;
-						n2=j2;
-					}
-				}
-			}
-			sprintf(tmpboard[m2][n2],"●");
-			int tmpmax=EmulateValueForMaxMin(tmpboard,WHITE,i1,j1,1);
-			if(tmpmax>valmax)
-			{
-				valmax=tmpmax;
-				m1=i1;
-				n1=j1;
+				maxval=tmpval;
+				m=i;
+				n=j;
 			}
 		}
 	}
-	sprintf(board[m1][n1],"○");
-	Wlast.m=m1;
-	Wlast.n=n1;
+	sprintf(board[m][n],"○");
+	Wlast.m=m;
+	Wlast.n=n;
 }
 
 void Level_2_ABcut(char board[N][N][L])
@@ -168,10 +141,8 @@ int EmulateValue(char board[N][N][L],int side,int m,int n)
 	return Evaluation(tmpboard,WHITE)-15*Evaluation(tmpboard,BLACK);				//这里的15是一个系数，表示电脑赌黑子和加白子的权重
 }
 
-int EmulateValueForMaxMin(char board[N][N][L],int side,int m,int n,int depth)					//Now working on!!!!
+int EmulateValueForMaxMin(char board[N][N][L],int m,int n,int depth)
 {
-//	char tmpboard1[N][N][L],tmpboard2[N][N][L],tmpboard3[N][N][L],tmpboard4[N][N][L];
-//	return 0;
 	char tmpboard[N][N][L];
 	for(int i=0;i<N;i++)
 	{
@@ -180,7 +151,7 @@ int EmulateValueForMaxMin(char board[N][N][L],int side,int m,int n,int depth)			
 			strcpy(tmpboard[i][j],board[i][j]);
 		}
 	}
-	if(side==WHITE)
+	if(!(depth%2))
 	{
 		sprintf(tmpboard[m][n],"○");
 	}
@@ -188,5 +159,51 @@ int EmulateValueForMaxMin(char board[N][N][L],int side,int m,int n,int depth)			
 	{
 		sprintf(tmpboard[m][n],"●");
 	}
-	return Evaluation(tmpboard,WHITE)-Evaluation(tmpboard,BLACK);
+	if(depth==1)
+		return Evaluation(tmpboard,WHITE)-9*Evaluation(tmpboard,BLACK);
+	if(!(depth%2))													//depth为奇数表示在MIN层，为偶数表示在MAX层
+	{
+		int tmpm=0,tmpn=0,valmin=1000000000;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				if(!notused(i,j,tmpboard))
+					continue;
+				if(!insight(i,j,tmpboard))
+					continue;
+				int tmpmin=EmulateValueForMaxMin(tmpboard,i,j,depth-1);
+				if(tmpmin<valmin)
+				{
+					valmin=tmpmin;
+					tmpm=i;
+					tmpn=j;
+				}
+			}
+		}
+		sprintf(tmpboard[tmpm][tmpn],"●");
+	}
+	else
+	{
+		int tmpm=0,tmpn=0,valmax=-1000000000;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				if(!notused(i,j,tmpboard))
+					continue;
+				if(!insight(i,j,tmpboard))
+					continue;
+				int tmpmax=EmulateValueForMaxMin(tmpboard,i,j,depth-1);
+				if(tmpmax>valmax)
+				{
+					valmax=tmpmax;
+					tmpm=i;
+					tmpn=j;
+				}
+			}
+		}
+		sprintf(tmpboard[tmpm][tmpn],"○");
+	}
+	return Evaluation(tmpboard,WHITE)-9*Evaluation(tmpboard,BLACK);
 }
