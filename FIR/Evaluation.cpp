@@ -80,7 +80,7 @@ int Left_Right2(char board[N][N][L],int state)
 			j++;
 		}
 	}
-	LRscore=100000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
+	LRscore=1000000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
 	return LRscore;
 }
 
@@ -164,7 +164,7 @@ int Up_Down2(char board[N][N][L],int state)
 			j++;
 		}
 	}
-	UDscore=100000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
+	UDscore=1000000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
 	return UDscore;
 }
 
@@ -319,7 +319,7 @@ int Left_Up2(char board[N][N][L],int state)
 			j++;
 		}
 	}
-	for(i=0;i<N-1;i++)												//Now Working on!!!!
+	for(i=0;i<N-1;i++)
 	{
 		j=0;
 		while(j<=i)
@@ -393,25 +393,8 @@ int Left_Up2(char board[N][N][L],int state)
 			j++;
 		}
 	}
-	LUscore=100000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
+	LUscore=1000000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
 	return LUscore;
-//	int PChar=state;
-//	int LU=0,RD=0;
-//	while(posn-LU>0&&posm-LU>0)
-//	{
-//		if(board[posm-LU-1][posn-LU-1][1]==PChar)
-//			LU++;
-//		else
-//			break;
-//	}
-//	while(posn+RD<14&&posm+RD<14)
-//	{
-//		if(board[posm+RD+1][posn+RD+1][1]==PChar)
-//			RD++;
-//		else
-//			break;
-//	}
-//	return LU+RD+1;
 }
 
 int Left_Down2(char board[N][N][L],int state)
@@ -639,26 +622,8 @@ int Left_Down2(char board[N][N][L],int state)
 			j++;
 		}
 	}
-	LDscore=100000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
+	LDscore=1000000*FIVE+10000*FOUR+1000*(THREE+HFOUR)+100*(TWO+HTHREE)+10*(ONE+HTWO)+HONE;
 	return LDscore;
-//	int PChar=state;
-//	int LD=0,RU=0;
-//	while(posm+LD<14&&posn-LD>0)
-//	{
-//		if(board[posm+LD+1][posn-LD-1][1]==PChar)
-//			LD++;
-//		else
-//			break;
-//	}
-//	while(posn+RU<14&&posm-RU>0)
-//	{
-//		if(board[posm-RU-1][posn+RU+1][1]==PChar)
-//			RU++;
-//		else
-//			break;
-//	}
-//	return LD+RU+1;
-	return 0;
 }
 
 int Evaluation(char board[N][N][L],int side)
