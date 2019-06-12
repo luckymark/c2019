@@ -1,0 +1,31 @@
+#include<cstdio>
+#include<cstring>
+
+using namespace std;
+
+#define maxn 1000+10
+
+bool Is_not_prime[maxn]; 
+int prime[maxn];
+
+//  the time efficiency is  O (n log log n ) in theory
+//  by huang chong yi   2018081306006
+int min(int a,int b){
+	return a < b ? a : b;    
+}
+int main(){
+	memset(Is_not_prime,0,sizeof(Is_not_prime));  // 0 means prime and 1 means not a prime;
+	memset(prime,0,sizeof(prime));
+	int cnt=0;                      // count the prime;
+	for (int i=2;i<=1000;i++)
+		if (! Is_not_prime[i]){ //  is a prime
+			for(int j=i*2;j<=1000;j+=i)
+				Is_not_prime[j]=true;
+			prime[++cnt]=i;
+		}
+	for(int i=1;i<=cnt;i++){
+		printf("\t%d ",prime[i]);
+		if (i%10==0) printf("\n");     // print with every 10 primes in a line ;
+	} 
+	return 0;
+}
