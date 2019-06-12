@@ -2,7 +2,6 @@
 #include"ai.h"
 int main()
 {
-	printf("Have fun!\n");
 	int win1,win2;
 	int changeside;
 	int *c;
