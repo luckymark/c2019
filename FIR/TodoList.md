@@ -16,6 +16,6 @@
 - - - 选取评价最高的点作为落子点
 - - Level 1 极大极小值搜索
 - - - 加入对黑子行为的预判
-- - Level 2 Alpha-Beta 剪枝
+- - Level 2 Alpha-Beta 剪枝 Done(?)
 
 ## 打印结局 Done

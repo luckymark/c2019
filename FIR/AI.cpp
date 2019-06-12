@@ -1,21 +1,13 @@
 #include"head.h"
 #include"Evaluation.h"
-
-int notused(int m,int n,char board[N][N][L]);
-void Level_0_Rand(char board[N][N][L]);
-void Level_01_Greedy(char board[N][N][L]);
-void Level_1_Max_Min(char board[N][N][L]);
-void Level_2_ABcut(char board[N][N][L]);
-int EmulateValue(char board[N][N][L],int side,int m,int n);		//根据最后落子估值				side:BLACK or WHITE
-int insight(int m,int n,char board[N][N][L]);				//判断是否在已下子的周围
-int EmulateValueForMaxMin(char board[N][N][L],int m,int n,int depth);				//depth表示递归搜索层数，必须为偶数
+#include"AI.h"
 
 void AIPos(char board[N][N][L])
 {
 	//Level_0_Rand(board);
 	//Level_01_Greedy(board);
-	Level_1_Max_Min(board);
-	//Level_2_ABcut(board);
+	//Level_1_Max_Min(board);
+	Level_2_ABcut(board);
 }
 
 int notused(int m,int n,char board[N][N][L])
@@ -115,6 +107,27 @@ void Level_1_Max_Min(char board[N][N][L])
 
 void Level_2_ABcut(char board[N][N][L])
 {
+	int i,j,maxval=-1000000000,m,n;
+	for(i=0;i<N;i++)
+	{
+		for(j=0;j<N;j++)
+		{
+			if(!notused(i,j,board))
+				continue;
+			if(!insight(i,j,board))
+				continue;
+			int tmpval=EmulateValueForABcut(board,i,j,2,maxval);
+			if(tmpval>maxval)
+			{
+				maxval=tmpval;
+				m=i;
+				n=j;
+			}
+		}
+	}
+	sprintf(board[m][n],"○");
+	Wlast.m=m;
+	Wlast.n=n;
 }
 
 int EmulateValue(char board[N][N][L],int side,int m,int n)
@@ -195,6 +208,77 @@ int EmulateValueForMaxMin(char board[N][N][L],int m,int n,int depth)
 				if(!insight(i,j,tmpboard))
 					continue;
 				int tmpmax=EmulateValueForMaxMin(tmpboard,i,j,depth-1);
+				if(tmpmax>valmax)
+				{
+					valmax=tmpmax;
+					tmpm=i;
+					tmpn=j;
+				}
+			}
+		}
+		sprintf(tmpboard[tmpm][tmpn],"○");
+	}
+	return Evaluation(tmpboard,WHITE)-9*Evaluation(tmpboard,BLACK);
+}
+
+int EmulateValueForABcut(char board[N][N][L],int m,int n,int depth,int lastval)
+{
+	char tmpboard[N][N][L];
+	for(int i=0;i<N;i++)
+	{
+		for(int j=0;j<N;j++)
+		{
+			strcpy(tmpboard[i][j],board[i][j]);
+		}
+	}
+	if(!(depth%2))
+	{
+		sprintf(tmpboard[m][n],"○");
+	}
+	else
+	{
+		sprintf(tmpboard[m][n],"●");
+	}
+	if(depth==1)
+		return Evaluation(tmpboard,WHITE)-9*Evaluation(tmpboard,BLACK);
+	if(!(depth%2))													//depth为奇数表示在MIN层，为偶数表示在MAX层
+	{
+		int tmpm=0,tmpn=0,valmin=1000000000;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				if(!notused(i,j,tmpboard))
+					continue;
+				if(!insight(i,j,tmpboard))
+					continue;
+				int tmpmin=EmulateValueForABcut(tmpboard,i,j,depth-1,valmin);
+				if(tmpmin<lastval)				//Got Problem here
+					return lastval;
+				if(tmpmin<valmin)
+				{
+					valmin=tmpmin;
+					tmpm=i;
+					tmpn=j;
+				}
+			}
+		}
+		sprintf(tmpboard[tmpm][tmpn],"●");
+	}
+	else
+	{
+		int tmpm=0,tmpn=0,valmax=-1000000000;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				if(!notused(i,j,tmpboard))
+					continue;
+				if(!insight(i,j,tmpboard))
+					continue;
+				int tmpmax=EmulateValueForABcut(tmpboard,i,j,depth-1,lastval);
+				if(tmpmax>lastval)				//Got Problem here
+					return lastval;
 				if(tmpmax>valmax)
 				{
 					valmax=tmpmax;
