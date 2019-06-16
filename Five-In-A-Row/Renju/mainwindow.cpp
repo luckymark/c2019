@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setMouseTracking(true);
     this->centralWidget()->setMouseTracking(true);
     gameRunning = 1;
+    clicked = 0;
     game = new Game();
 }
 
@@ -60,7 +61,8 @@ void MainWindow::drawBoard()
 
     for (int i = 0; i < BOARD_SIZE; i++)
         for (int j = 0; j < BOARD_SIZE; j++)
-            drawChess(i, j, game->getChess(i, j));
+            drawChess(i, j, game->bd->getChess(i, j));
+
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
@@ -77,21 +79,18 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     int x = (curPoint.x() - MARGIN + GAP / 2) / GAP;
     int y = (curPoint.y() - MARGIN + GAP / 2) / GAP;
     if (x < 0 || y < 0 || x >= BOARD_SIZE || y >= BOARD_SIZE) return;
-    //for (int s = 0; s < 8; s++)
-    //    qDebug() << game->rate(x, y, s, 1) << game->rate(x, y, s, 0);
-    //    qDebug() << game->status[x][y][s][1] << game->status[x][y][s][0];
-    //qDebug() << endl;
-    game->printScore();
-    qDebug() << game->score[x][y][1] << game->score[x][y][0];
-    if (game->getChess(x, y)) return;
-    if (game->curType == 1 && gameRunning)
+    for (int i = 0; i < 8; i++) qDebug("%d ", game->bd->status[x][y][i]);
+    qDebug() << endl;
+    qDebug("%d %d\n", game->bd->score[x][y][1], game->bd->score[x][y][0]);
+    if (game->bd->getChess(x, y)) return;
+
+    if (gameRunning)
     {
         if (event->buttons() == Qt::LeftButton)
         {
             game->curX = x;
             game->curY = y;
-            game->placeChess();
-            //game->AIdecide();
+            clicked = 1;
         }
     }
     update();
@@ -100,11 +99,11 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
-    int isWin = game->validateWin();
+    int isWin = game->checkWin();
     if (isWin)
     {
         gameRunning = 0;
-        if (isWin == 1)
+        if (isWin == WHITE_CHESS)
         {
             QMessageBox::information(nullptr,
                                      "Victory",
@@ -127,17 +126,21 @@ void MainWindow::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     this->resize(QSize(W_WIDTH, W_HEIGHT));
+    if (clicked)
+    {
+        game->nextMove();
+        game->nextMove();
+        clicked = 0;
+    }
     this->drawBoard();
 
-    if (game->curType == 0 && gameRunning)
-    {
-        game->AIdecide();
-    }
+
+    if (!gameRunning) return;
 
     int x = (curPoint.x() - MARGIN + GAP / 2) / GAP;
     int y = (curPoint.y() - MARGIN + GAP / 2) / GAP;
     if (x < 0 || y < 0 || x >= BOARD_SIZE || y >= BOARD_SIZE) return;
-    if (game->getChess(x, y)) return;
+    if (game->bd->getChess(x, y)) return;
 
     QPainter painter(this);
 

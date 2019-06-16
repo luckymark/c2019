@@ -32,6 +32,7 @@ private:
     QPoint curPoint;
     Game *game;
     bool gameRunning;
+    bool clicked;
     void drawChess(int x, int y, int type);
     void drawBoard();
     void mousePressEvent(QMouseEvent *event);

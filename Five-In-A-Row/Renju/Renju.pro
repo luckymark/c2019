@@ -27,11 +27,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    game.cpp
+    game.cpp \
+    board.cpp \
+    alphabeta.cpp \
+    point.cpp
 
 HEADERS += \
         mainwindow.h \
-    game.h
+    game.h \
+    board.h \
+    alphabeta.h \
+    point.h \
+    scorelist.h
 
 FORMS += \
         mainwindow.ui
