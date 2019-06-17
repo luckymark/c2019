@@ -59,7 +59,6 @@ pointStruct playerPutPiece(int player, pointStruct curPoint) // move pointer to 
 ## AI部分：[GomokuAI.h](/Gomoku/GomokuAI.h)
 
 1. 算法的第一个核心部分是对于棋局的判断。在董红安2005年论文《计算机五子棋博弈系统的研究与实现》中有这么一个评分表。
-![score_table](\Gomoku\score_table.jpg)
 ![score_table](/Gomoku/Gomoku/score_table.jpg)
 用`pieceNInLine()`函数修改一个数组`len[]`，即为以该点为中心某一列的连续的棋子数。把该数组与由上述评分表生成的`scoreTable[][]`数组进行比对，即可得到每一行的估分。`calculateScore()`函数计算米字型的四个方向（米字型的八个方向，每一对相反的方向去掉其一，下同）上的分数并求和，即得到了该点的估分。  
 同时，`pieceNInLine()`也实现了对胜局的判断，只需要判断返回的`len[]`数组其中是否有数大于等于5。
