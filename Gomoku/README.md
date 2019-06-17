@@ -8,7 +8,7 @@
 
 本程序用C语言用控制台实现了五子棋程序，包括简易的界面，以及了一个较为~弱智~简单的AI。
 
-## UI部分：[GomokuUI.h](\Gomoku\GomokuUI.h)
+## UI部分：[GomokuUI.h](/Gomoku/Gomoku/GomokuUI.h)
 
 1. 定义结构`pointStruct`存储棋子的行和列.
 棋子的值存储在`board[][]`数组里。  
@@ -54,12 +54,12 @@ pointStruct playerPutPiece(int player, pointStruct curPoint) // move pointer to 
 }
 ```
 
-5. `AIPutPiece()` 函数部分定义在[GomokuAI.h](README.md#AI部分：[GomokuAI.h](\Gomoku\GomokuAI.h))中
+5. `AIPutPiece()` 函数部分定义在[GomokuAI.h](README.md#AI部分：[GomokuAI.h](#ai%E9%83%A8%E5%88%86gomokuaih)中
 
-## AI部分：[GomokuAI.h](\Gomoku\GomokuAI.h)
+## AI部分：[GomokuAI.h](/Gomoku/Gomoku/GomokuAI.h)
 
 1. 算法的第一个核心部分是对于棋局的判断。在董红安2005年论文《计算机五子棋博弈系统的研究与实现》中有这么一个评分表。
-![score_table](\Gomoku\score_table.jpg)
+![score_table](/Gomoku/Gomoku/score_table.jpg)
 用`pieceNInLine()`函数修改一个数组`len[]`，即为以该点为中心某一列的连续的棋子数。把该数组与由上述评分表生成的`scoreTable[][]`数组进行比对，即可得到每一行的估分。`calculateScore()`函数计算米字型的四个方向（米字型的八个方向，每一对相反的方向去掉其一，下同）上的分数并求和，即得到了该点的估分。  
 同时，`pieceNInLine()`也实现了对胜局的判断，只需要判断返回的`len[]`数组其中是否有数大于等于5。
 2. `AIPutPiece()`前两个版本使用的是`rand()`在可以下棋的范围内随机下棋，以及计算以上一个走子为中心的`9x9`（此处使用的是宏定义，可以根据效率和棋力进行调整）的格子中寻找分数最高的走法并走子。  
