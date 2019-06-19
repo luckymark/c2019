@@ -116,7 +116,7 @@ void Level_2_ABcut(char board[N][N][L])
 				continue;
 			if(!insight(i,j,board))
 				continue;
-			int tmpval=EmulateValueForABcut(board,i,j,2,maxval);
+			int tmpval=EmulateValueForABcut(board,i,j,4,maxval);
 			if(tmpval>maxval)
 			{
 				maxval=tmpval;
@@ -253,7 +253,7 @@ int EmulateValueForABcut(char board[N][N][L],int m,int n,int depth,int lastval)
 				if(!insight(i,j,tmpboard))
 					continue;
 				int tmpmin=EmulateValueForABcut(tmpboard,i,j,depth-1,valmin);
-				if(tmpmin<lastval)				//Got Problem here
+				if(tmpmin<=lastval)				//Got Problem here
 					return lastval;
 				if(tmpmin<valmin)
 				{
@@ -277,7 +277,7 @@ int EmulateValueForABcut(char board[N][N][L],int m,int n,int depth,int lastval)
 				if(!insight(i,j,tmpboard))
 					continue;
 				int tmpmax=EmulateValueForABcut(tmpboard,i,j,depth-1,lastval);
-				if(tmpmax>lastval)				//Got Problem here
+				if(tmpmax>=lastval)				//Got Problem here
 					return lastval;
 				if(tmpmax>valmax)
 				{
