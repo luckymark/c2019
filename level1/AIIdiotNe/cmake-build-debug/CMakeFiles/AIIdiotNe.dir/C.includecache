@@ -1,0 +1,66 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/ACautomaton.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/AI.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/ControlMove.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/Evaluate.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+hlibrary.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/hlibrary.h
+material.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/material.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/Game.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/Stack.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/hlibrary.h
+stdio.h
+-
+stdlib.h
+-
+windows.h
+-
+time.h
+-
+string.h
+-
+tchar.h
+-
+SDKDDKVer.h
+-
+stdbool.h
+-
+conio.h
+-
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/main.c
+FIR.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/FIR.h
+
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/material.h
+hlibrary.h
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/hlibrary.h
+

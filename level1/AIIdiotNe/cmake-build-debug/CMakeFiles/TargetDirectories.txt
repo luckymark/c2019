@@ -1,0 +1,3 @@
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/cmake-build-debug/CMakeFiles/AIIdiotNe.dir
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/LearnAndFun/Programming/c programming/AIIdiotNe/cmake-build-debug/CMakeFiles/rebuild_cache.dir
