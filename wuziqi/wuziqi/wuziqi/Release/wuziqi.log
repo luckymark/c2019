@@ -1,0 +1,8 @@
+﻿  assume.c
+c:\users\尘埃\desktop\wuziqi\assume.c(50): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  正在生成代码
+  2 of 33 functions ( 6.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  wuziqi.vcxproj -> C:\Users\尘埃\Desktop\wuziqi\wuziqi\Release\wuziqi.exe
