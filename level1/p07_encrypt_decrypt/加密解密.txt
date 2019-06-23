@@ -1,0 +1,121 @@
+﻿/* 我用的凯撒加密*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ //函数encrypt()将字母顺序推后n位，实现文件加密功能
+void encrypt(char str[],int n)
+{
+    char c;
+    int i;
+    for(i=0;i<strlen(str);++i)
+	{  
+        c=str[i];
+        if(c>='a' && c<='z')//c是小写字母
+		{  
+            if(c+n%26<='z') //若加密后不超出小写字母范围
+			{ 
+                str[i]=(char)(c+n%26);  //加密函数
+            }
+			else
+			{  
+                str[i]=(char)(c+n%26-26);//加密后超出小写字母范围,从头开始循环小写字母
+            }
+        }
+		else if(c>='A' && c<='Z')//c为大写字母
+		{ 
+            if(c + n%26 <= 'Z') //加密后不超出大写字母范围
+			{ 
+                str[i]=(char)(c+n%26);
+            }
+			else
+			{  
+                str[i]=(char)(c+n%26-26);//加密后超出大写字母范围,从头开始循环大写字母
+            }
+        }
+		else
+		{  
+            str[i]=c;//不是字母，不加密
+        }
+    }
+    printf("\nAfter encrypt: \n");
+    puts(str);  //输出加密后的字符串
+}
+ 
+ 
+//decrypt()实现解密功能，将字母顺序前移n位
+void decrypt(char str[],int n)
+{
+    char c;
+    int i;
+    //遍历字符串
+    for(i=0;i<strlen(str);++i)
+	{
+        c=str[i]; //c为小写字母
+        if(c>='a' && c<='z')
+		{
+           
+            if(c-n%26>='a') //解密后还为小写字母，直接解密
+			{
+                str[i]=(char)(c-n%26);
+            }
+			else
+			{
+               
+                str[i]=(char)(c-n%26+26); //解密后不为小写字母了，通过循环小写字母处理为小写字母
+            }
+        }
+		else if(c >= 'A' && c<='Z') //c为大写字母
+		{ 
+            if(c-n%26>='A') //解密后还为大写字母
+			{ 
+                str[i]=(char)(c-n%26);
+            }
+			else
+			{ 
+                str[i]=(char)(c-n%26+26); //解密后不为大写字母了,循环大写字母,处理为大写字母
+        }
+		else
+		{ 
+            str[i]=c; //非字母不处理
+        }
+    }
+    printf("\nAfter decrypt: \n");
+    puts(str);  //输出解密后的字符串
+}
+ 
+int main()
+{
+    char str[50];
+    int k=0,n=0,i=1;
+    printf("\nPlease input strings: ");
+    scanf("%s",str);  //输入加密解密字符串
+    //打印菜单
+    printf("-----------------\n");
+    printf("1: Encryption\n");
+    printf("2: Decryption\n");
+    printf("3: Violent Crack\n");  //暴力破解
+    printf("-----------------\n");
+    printf("\nPlease choose: ");
+    scanf("%d",&k);
+    if(k==1)
+	{ 
+        printf("\nPlease input number: ");
+        scanf("%d",&n);
+        encrypt(str,n);
+    }
+	else if(k==2)
+	{ 
+        printf("\nPlease input number: ");
+        scanf("%d",&n);
+        decrypt(str,n);
+    }
+	else
+	{
+        for(i=1;i<=25;++i)
+		{ 
+            printf("%d ",i); //尝试所有可能的n值进行暴力破解
+            decrypt(str,i);
+        }
+    }
+    return 0;
+}
