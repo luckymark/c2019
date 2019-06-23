@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "stdlib.h": "c",
+        "ai.h": "c"
+    }
+}
