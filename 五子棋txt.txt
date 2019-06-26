@@ -1,4 +1,11 @@
-﻿#include<stdio.h>
+这个文件也是.txt (ノへ￣、)，由于实验报告已经提交了，网址没法改了(°ー°〃)，
+我就把.c网址放在这里希望老师能看见(。﹏。*)
+https://github.com/lzysb/c2019/blob/master/%E4%BA%94%E5%AD%90%E6%A3%8Bcpp.cpp
+谢谢老师！！！
+
+
+
+#include<stdio.h>
 #include<string.h>
 #include<windows.h>//API函数头文件
 #include<conio.h>//控制台输 入输出头文件
