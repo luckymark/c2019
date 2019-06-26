@@ -118,7 +118,7 @@ int main()
 		if (point == 22)
 		{
 			system("cls");
-			board[0][0] = 2;//默认电脑先下
+			board[7][7] = 2;//默认电脑先下
 			show();
 			printf("◎为电脑上一步下的棋a向左移动，d向右移动，w向上移动，s向下移动，空格下棋\n \n \n\n\n\n\n\n");
 			while (1)
