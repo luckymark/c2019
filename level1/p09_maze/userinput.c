@@ -1,0 +1,45 @@
+#include"userinput.h"
+void userinput(pmaze m,char ch)
+{
+
+        if(ch=='w')
+        {
+            position_x--;
+            if(m->_map[position_x][position_y]==0)
+            {
+                position_x++;
+            }
+        }
+        if(ch=='s')
+        {
+            position_x++;
+            if(m->_map[position_x][position_y]==0)
+            {
+                position_x--;
+            }
+        }
+        if(ch=='a')
+        {
+            position_y--;
+            if(m->_map[position_x][position_y]==0)
+            {
+                position_y++;
+            }
+        }
+        if(ch=='d')
+        {
+            position_y++;
+            if(m->_map[position_x][position_y]==0)
+            {
+                position_y--;
+            }
+        }
+        if(ch=='p')
+        {
+            antoprintmaze(m);
+            exit(1);
+        }
+        one=1;
+        m->_map[px][py]=temp;
+
+}
