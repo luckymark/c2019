@@ -1,0 +1,17 @@
+﻿  game.cpp
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.h(4): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.h(6): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.cpp(3): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.cpp(6): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.cpp(8): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.cpp(27): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.cpp(77): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+  main.cpp
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.h(4): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.h(6): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\map.h(5): error C2018: 未知字符“0x7f”
+  map.cpp
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\map.h(5): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\map.cpp(3): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\map.cpp(6): error C2018: 未知字符“0x7f”
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\map.cpp(9): error C2018: 未知字符“0x7f”
