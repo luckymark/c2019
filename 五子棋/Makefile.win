@@ -1,0 +1,40 @@
+# Project: 项目2
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = gobang_main.o subfunctions.o AI.o gobang_judge.o evaluation.o
+LINKOBJ  = gobang_main.o subfunctions.o AI.o gobang_judge.o evaluation.o
+LIBS     = -L"D:/dev++/Dev-Cpp/MinGW64/lib" -L"D:/dev++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"D:/dev++/Dev-Cpp/MinGW64/include" -I"D:/dev++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/dev++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/dev++/Dev-Cpp/MinGW64/include" -I"D:/dev++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/dev++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/dev++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = 五子棋.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+gobang_main.o: gobang_main.c
+	$(CC) -c gobang_main.c -o gobang_main.o $(CFLAGS)
+
+subfunctions.o: subfunctions.c
+	$(CC) -c subfunctions.c -o subfunctions.o $(CFLAGS)
+
+AI.o: AI.c
+	$(CC) -c AI.c -o AI.o $(CFLAGS)
+
+gobang_judge.o: gobang_judge.c
+	$(CC) -c gobang_judge.c -o gobang_judge.o $(CFLAGS)
+
+evaluation.o: evaluation.c
+	$(CC) -c evaluation.c -o evaluation.o $(CFLAGS)
