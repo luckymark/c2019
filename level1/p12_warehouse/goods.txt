@@ -1,0 +1,4 @@
+milk 10
+hamberger 20
+chicken 22
+egg 10
