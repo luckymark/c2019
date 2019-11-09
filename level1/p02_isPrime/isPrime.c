@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdbool.h>
+int get_int(void);
+int main(){
+	int a,i;
+	bool isp=true;
+	
+	a=get_int();
+	for(i=2;i<a/2+1;i++){
+		if(a%i==0){
+			isp=false;
+			break;
+		}
+	}
+	
+	if(isp){
+		printf("%d is prime\n",a);
+	}else{
+		printf("%d is not prime\n",a);
+	}
+	
+	return 0;
+} 
+int get_int(void){
+	int a;
+	char ch;
+	
+	while(scanf("%d",&a)!=1){
+		while((ch=getchar())!='\n'){
+			putchar(ch);
+		}
+		printf(" is not an integer,please again\n");
+	}
+	
+	return a;
+}
