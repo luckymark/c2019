@@ -1,0 +1,6 @@
+﻿  game.cpp
+  main.cpp
+  map.cpp
+  正在生成代码...
+f:\coding\c2019\level1\p10_pushboxes\push_box\push_box\game.cpp(79): warning C4715: “move”: 不是所有的控件路径都返回值
+  push_box.vcxproj -> F:\coding\c2019\level1\p10_pushBoxes\push_box\Debug\push_box.exe
