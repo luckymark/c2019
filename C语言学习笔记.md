@@ -22,6 +22,7 @@ void indir()  //input direction
   }
 }
 ```
+> For it's application, please [click here](https://github.com/Fyy10/c2019/tree/master/level1/p09_maze).
 - 关于中文字，每个中文字对应两个字符，可以使用字符串存储和输出中文字
 ```c
 #include<stdio.h>
@@ -34,4 +35,5 @@ int main()
   return 0;
 }
 ```
+> For it's application, please [click here](https://github.com/Fyy10/ENIAC/blob/master/ChineseTest.cpp).
 - 实际上，一个中文字也可以用整型变量(跟char相同只是占用两个字节)存储，输出则采用宽字符输出`wprintf()`
