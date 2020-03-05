@@ -1,9 +1,14 @@
 #include <iostream>
 #include <cstring>
+#include <complex>
 #include <cstdio>
 #include <ctime>
 
 #include "bigDecimal.h"
+
+using namespace std;
+
+#define CPD complex<double>
 
 BigDecimal N1(1, 0);
 BigDecimal N2(2, 0);
@@ -52,10 +57,10 @@ int cnt = 0;
 
 void prWis(int k)
 {
-	for (LL s = BASE/10; s > 0; s/=10)
+	for (LL s = BASE / 10; s > 0; s /= 10)
 	{
-		printf("%lld", k/s);
-		k -= k/s*s;
+		printf("%lld", k / s);
+		k -= k / s * s;
 		cnt++;
 	}
 }
@@ -86,7 +91,7 @@ void BigDecimal::printDecimal()
 	printf("Approximately %d digits\n", cnt);
 }
 
-BigDecimal BigDecimal::operator = (const BigDecimal number)
+BigDecimal BigDecimal::operator = (const BigDecimal &number)
 {
 	for (register int s = L - 1; s >= 0; s--)
 	{
@@ -141,7 +146,7 @@ bool BigDecimal::operator != (const BigDecimal &number) const
 	return !(*this == number);
 }
 
-BigDecimal BigDecimal::operator + (const BigDecimal number)
+BigDecimal BigDecimal::operator + (const BigDecimal &number)
 {
 	BigDecimal tmp = *this;
 	tmp.size = std::max(tmp.size, number.size);
@@ -154,7 +159,18 @@ BigDecimal BigDecimal::operator + (const BigDecimal number)
 	return tmp;
 }
 
-BigDecimal BigDecimal::operator - (const BigDecimal number)
+void BigDecimal::operator += (const BigDecimal &number)
+{
+	size = max(size, number.size);
+	for (register int s = 0; s < size; s++)
+	{
+		num[s] += number.num[s];
+	}
+	tid();
+	correctSize();
+}
+
+BigDecimal BigDecimal::operator - (const BigDecimal &number)
 {
 	BigDecimal tmp = *this;
 	tmp.size = std::max(tmp.size, number.size);
@@ -168,14 +184,33 @@ BigDecimal BigDecimal::operator - (const BigDecimal number)
 		if (tmp.num[s] < 0)
 		{
 			tmp.num[s] += BASE;
-			tmp.num[s+1]--;
+			tmp.num[s + 1]--;
 		}
 	}
 	tmp.correctSize();
 	return tmp;
 }
 
-BigDecimal BigDecimal::operator * (const BigDecimal number)
+void BigDecimal::operator -= (const BigDecimal &number)
+{
+	size = max(size, number.size);
+	for (register int s = 0; s < size; s++)
+	{
+		num[s] -= number.num[s];
+	}
+	tid();
+	for (register int s = 0; s < size; s++)
+	{
+		if (num[s] < 0)
+		{
+			num[s] += BASE;
+			num[s + 1]--;
+		}
+	}
+	correctSize();
+}
+
+BigDecimal BigDecimal::operator * (const BigDecimal &number)
 {
 	BigDecimal tmp(0, 0);
 	for (register int s = 0; s < size; s++)
@@ -200,7 +235,7 @@ BigDecimal BigDecimal::div2()
 	LL remain = 0;
 	for (register int s = size - 1; s >= 0; s--)
 	{
-		LL k = num[s] + remain*BASE;
+		LL k = num[s] + remain * BASE;
 		ret.num[s] = k >> 1;
 		remain = k & 1;
 	}
@@ -209,12 +244,24 @@ BigDecimal BigDecimal::div2()
 	return ret;
 }
 
-BigDecimal BigDecimal::operator << (const int shift)
+void BigDecimal::div2_Self()
 {
-	BigDecimal ret = (*this);
+	LL remain = 0;
+	for (register int s = size - 1; s >= 0; s--)
+	{
+		LL k = num[s] + remain * BASE;
+		num[s] = k >> 1;
+		remain = k & 1;
+	}
+	correctSize();
+}
+
+BigDecimal BigDecimal::operator << (int shift)
+{
+	BigDecimal ret(0, 0);
 	for (register int s = 0; s < ret.size; s++)
 	{
-		ret.num[s] <<= shift;
+		ret.num[s] = num[s] << shift;
 	}
 	ret.size = size + 2;
 	ret.tid();
@@ -222,18 +269,29 @@ BigDecimal BigDecimal::operator << (const int shift)
 	return ret;
 }
 
-BigDecimal BigDecimal::operator / (const BigDecimal number)
+void BigDecimal::operator <<= (int shift)
+{
+	for (register int s = 0; s < size; s++)
+	{
+		num[s] <<= shift;
+	}
+	size += 2;
+	tid();
+	correctSize();
+}
+
+BigDecimal BigDecimal::operator / (const BigDecimal &number)
 {
 	BigDecimal l(0, 0);
 	BigDecimal r(1, L - DIGIT_POS - 1);
 	BigDecimal m(1, 0);
-	while (m * number > N1)
+	while ((m * number) > N1)
 	{
 		r = m;
-		m = (l+r).div2();
+		m = (l + r).div2();
 	}
 	BigDecimal ret(1, 0);
-	for (int s = 0; s < ITERATION_TIME; s++)
+	for (int s = 0; s < DIV_ITERATION_TIME; s++)
 	{
 		ret = m * (N2 - (m * number));
 		m = ret;
@@ -245,7 +303,30 @@ BigDecimal BigDecimal::sqrt()
 {
 	BigDecimal k(1, 0);
 	k = *this;
-	for (int s = 0; s < ITERATION_TIME; s++)
-		k = (k + (*this/k)).div2();
+	for (int s = 0; s < SQRT_ITERATION_TIME; s++)
+		k = (k + (*this / k)).div2();
 	return k;
+}
+
+void BigDecimal::square_Self()
+{
+	LL tmp[size];
+	for (int s = 0; s < size; s++)
+	{
+		tmp[s] = num[s];
+	}
+	memset(num, 0, sizeof num);
+	for (register int s = 0; s < size; s++)
+	{
+		for (register int t = 0; t < size; t++)
+		{
+			if (s + t - DIGIT_POS >= 0)
+			{
+				num[s + t - DIGIT_POS] += tmp[s] * tmp[t];
+			}
+		}
+	}
+	size += size - DIGIT_POS + 2;
+	tid();
+	correctSize();
 }
