@@ -1,0 +1,9 @@
+#define LIVE_5 100000
+#define LIVE_4 10000
+#define SLEEP_4 1000
+#define LIVE_3 100
+#define SLEEP_3 10
+#define LIVE_2 10
+#define SLEEP_2 1
+#define LIVE_1 1
+#define NON 0
